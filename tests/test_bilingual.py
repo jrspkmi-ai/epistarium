@@ -252,7 +252,7 @@ def test_catalog_placeholders_match_and_all_used_messages_exist():
     missing=[]
     for path in (ROOT/'epistarium').glob('*.py'):
         if path.name=='i18n.py':continue
-        for node in ast.walk(ast.parse(path.read_text())):
+        for node in ast.walk(ast.parse(path.read_text(encoding='utf-8'))):
             if isinstance(node,ast.Call) and isinstance(node.func,ast.Name) and node.func.id=='tr' and node.args:
                 if isinstance(node.args[0],ast.Constant) and isinstance(node.args[0].value,str) and node.args[0].value not in catalog:
                     missing.append((path.name,node.lineno,node.args[0].value))
