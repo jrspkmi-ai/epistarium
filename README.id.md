@@ -1,5 +1,9 @@
 [English](README.md) | Bahasa Indonesia
 
+<!-- EPISTARIUM_HERO_BEGIN -->
+![EPISTARIUM: logo, slogan, dan sepuluh bot persona penelitian orisinal](assets/brand/readme-hero.png)
+<!-- EPISTARIUM_HERO_END -->
+
 <!-- section: identity -->
 # EPISTARIUM
 
