@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "epistarium"
+dynamic = ["version"]
+description = "Modular AI Research Skills"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md", "third_party/SimpleEnglish/LICENSE"]
+keywords = ["research", "agent-skills", "bilingual", "evidence"]
+classifiers = ["Development Status :: 4 - Beta", "Programming Language :: Python :: 3", "Intended Audience :: Science/Research"]
+requires-python = ">=3.11"
+dependencies = ["pypdfium2>=5.14,<6", "pypdf>=6.21,<7", "requests>=2.31", "python-docx>=1.1", "openpyxl>=3.1", "jsonschema>=4.21", "defusedxml>=0.7.1", "tzdata>=2024.1; sys_platform == 'win32'"]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "PyMuPDF>=1.28.2,<2", "reportlab>=4", "PyYAML>=6", "build>=1", "wheel>=0.43", "setuptools>=77"]
+
+[project.scripts]
+epistarium = "epistarium.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["epistarium*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.package-data]
+epistarium = ["data/*.json"]
+
+[tool.setuptools.dynamic]
+version = {attr = "epistarium._version.__version__"}

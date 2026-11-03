@@ -1,0 +1,1 @@
+{"sources":[{"provider":"worldbank","indicator":"IT.NET.USER.ZS","country":"IDN","source_type":"statistik resmi","title":"World Bank Individuals using the Internet (% of population)"}],"max_requests":2,"timeout_seconds":6,"target_geography":"Indonesia"}

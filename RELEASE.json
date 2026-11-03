@@ -1,0 +1,17 @@
+{
+  "name": "EPISTARIUM",
+  "version": "0.7.1",
+  "status": "RELEASE_CANDIDATE",
+  "tagline": "Explore. Analyze. Verify.",
+  "description": "Modular AI Research Skills",
+  "languages": [
+    "en",
+    "id"
+  ],
+  "persona_count": 10,
+  "license_scope": "MIT for original EPISTARIUM work only",
+  "pdf_dependency": "pypdfium2>=5.14,<6 and pypdf>=6.21,<7; PyMuPDF development test extra only",
+  "public_release_gate": "GO_BERSYARAT",
+  "publication_authorized": false,
+  "release_gate_scope": "Linux Python 3.12 local tested; cross-OS and native-host NOT_RUN; no publication authorization"
+}

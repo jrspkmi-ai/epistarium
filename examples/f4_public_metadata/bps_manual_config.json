@@ -1,0 +1,18 @@
+{
+  "sources": [
+    {
+      "provider": "local_csv",
+      "path": "examples/f4_public_metadata/bps_internet_2024_manual_excerpt.csv",
+      "rights_confirmed": false,
+      "url": "https://www.bps.go.id/id/publication/2025/08/29/beaa2be400eda6ce6c636ef8/telecommunication-statistics-in-indonesia-2024.html",
+      "organization": "Badan Pusat Statistik",
+      "title": "Statistik Telekomunikasi Indonesia 2024 (angka ringkasan laman BPS; ditranskripsi manual)",
+      "jenis_data": "statistik resmi",
+      "collection_method": "Transkripsi manual dari ringkasan halaman publikasi resmi, bukan pemanggilan API BPS",
+      "license": null,
+      "rights_note": "Unconfirmed reuse permission. Verify applicable terms before enabling this real numeric transcription."
+    }
+  ],
+  "target_geography": "Indonesia",
+  "target_population": "penduduk Indonesia"
+}

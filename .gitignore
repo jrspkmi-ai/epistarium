@@ -1,0 +1,37 @@
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.egg-info/
+build/
+dist/
+# Private research and licensed originals belong in these excluded folders.
+private/
+userdata/
+sensitive-data/
+interviews/
+respondent-identities/
+licensed-pdfs/
+raw-data/
+raw-pdfs/
+**/raw-pdfs/
+reports/private-*/
+private-reports/
+tmp/
+.cache/
+*.key
+*.pem
+*.p12
+*.pfx
+credentials.json
+secrets.json
+# Host adapters are generated from .agents/skills, never a second source.
+.claude/skills/
+.claude/epistarium-skills.json
+# Keep synthetic PDFs and DOCX/XLSX fixtures tracked. No global document ban.

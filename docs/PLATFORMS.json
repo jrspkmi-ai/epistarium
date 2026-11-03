@@ -1,0 +1,102 @@
+[
+  {
+    "slug": "opencode",
+    "name": "OpenCode",
+    "official_source": "https://opencode.ai/docs/skills/",
+    "checked_at": "2026-11-03",
+    "source_status": "PASS",
+    "native_execution": "NOT_RUN",
+    "project_location": ".agents/skills/",
+    "version_tested": null
+  },
+  {
+    "slug": "antigravity",
+    "name": "Google Antigravity",
+    "official_source": "https://antigravity.google/docs/skills?tab=ide",
+    "checked_at": "2026-11-03",
+    "source_status": "PASS",
+    "native_execution": "NOT_RUN",
+    "project_location": ".agents/skills/",
+    "version_tested": null
+  },
+  {
+    "slug": "codex",
+    "name": "OpenAI Codex",
+    "official_source": "https://learn.chatgpt.com/docs/build-skills",
+    "checked_at": "2026-11-03",
+    "source_status": "PASS",
+    "native_execution": "NOT_RUN",
+    "project_location": ".agents/skills/",
+    "version_tested": null
+  },
+  {
+    "slug": "chatgpt",
+    "name": "ChatGPT",
+    "official_source": "https://learn.chatgpt.com/docs/skills-and-plugins",
+    "checked_at": "2026-11-03",
+    "source_status": "PASS",
+    "native_execution": "NOT_RUN",
+    "project_location": "No universal web filesystem discovery path",
+    "version_tested": null
+  },
+  {
+    "slug": "claude",
+    "name": "Claude Code and Claude web",
+    "official_source": "https://code.claude.com/docs/en/skills",
+    "checked_at": "2026-11-03",
+    "source_status": "PASS",
+    "native_execution": "NOT_RUN",
+    "project_location": ".claude/skills/ via a generated project adapter",
+    "version_tested": null
+  },
+  {
+    "slug": "gemini",
+    "name": "Gemini CLI and Gemini web",
+    "official_source": "https://geminicli.com/docs/cli/skills/",
+    "checked_at": "2026-11-03",
+    "source_status": "PASS",
+    "native_execution": "NOT_RUN",
+    "project_location": ".agents/skills/ (documented workspace alias)",
+    "version_tested": null
+  },
+  {
+    "slug": "copilot",
+    "name": "GitHub Copilot",
+    "official_source": "https://docs.github.com/en/copilot/concepts/customizations/agent-skills",
+    "checked_at": "2026-11-03",
+    "source_status": "PASS",
+    "native_execution": "NOT_RUN",
+    "project_location": ".agents/skills/ (check support on the chosen Copilot surface)",
+    "version_tested": null
+  },
+  {
+    "slug": "cursor",
+    "name": "Cursor",
+    "official_source": "https://cursor.com/help/customization/skills",
+    "checked_at": "2026-11-03",
+    "source_status": "PASS",
+    "native_execution": "NOT_RUN",
+    "project_location": ".agents/skills/",
+    "version_tested": null
+  },
+  {
+    "slug": "windsurf",
+    "name": "Windsurf",
+    "official_source": "https://docs.windsurf.com/windsurf/cascade/skills",
+    "checked_at": "2026-11-03",
+    "source_status": "BLOCKED",
+    "native_execution": "NOT_RUN",
+    "project_location": "NOT_ESTABLISHED from accessible official content in this audit",
+    "version_tested": null
+  },
+  {
+    "slug": "amp",
+    "name": "Amp",
+    "official_source": "https://ampcode.com/docs/customize/skills",
+    "checked_at": "2026-11-03",
+    "source_status": "PASS",
+    "native_execution": "NOT_RUN",
+    "project_location": ".agents/skills/",
+    "version_tested": null
+  }
+]

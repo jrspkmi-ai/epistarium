@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EPISTARIUM Full Research Manifest v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "mode",
+    "status",
+    "stage_statuses",
+    "human_approval_required"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "epistarium.jorhas.full.v1"
+    },
+    "mode": {
+      "const": "FULL_RESEARCH"
+    },
+    "status": {
+      "enum": [
+        "SUCCESS",
+        "PARTIAL",
+        "BLOCKED",
+        "FAILED",
+        "NOT_RUN"
+      ]
+    },
+    "stage_statuses": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "SUCCESS",
+          "PARTIAL",
+          "BLOCKED",
+          "FAILED",
+          "NOT_RUN"
+        ]
+      }
+    },
+    "human_approval_required": {
+      "type": "boolean"
+    }
+  }
+}

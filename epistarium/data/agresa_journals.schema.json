@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agresa Journals V0.1.2",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "title",
+      "issn",
+      "year"
+    ],
+    "properties": {
+      "title": {
+        "type": "string"
+      },
+      "issn": {
+        "type": "string"
+      },
+      "year": {
+        "type": "integer",
+        "minimum": 1500,
+        "maximum": 2200
+      },
+      "article_doi": {
+        "type": "string"
+      },
+      "eissn": {
+        "type": "string"
+      }
+    }
+  }
+}

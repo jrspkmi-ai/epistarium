@@ -1,0 +1,45 @@
+{
+  "language": "en",
+  "version": "0.7.0",
+  "execution_status": "SUCCESS",
+  "checks": {
+    "python": {
+      "ok": true,
+      "version": "3.12.14"
+    },
+    "PyMuPDF": {
+      "ok": true,
+      "version": "1.28.2"
+    },
+    "requests": {
+      "ok": true,
+      "version": "2.34.2"
+    },
+    "python-docx": {
+      "ok": true,
+      "version": "1.2.0"
+    },
+    "openpyxl": {
+      "ok": true,
+      "version": "3.1.5"
+    },
+    "jsonschema": {
+      "ok": true,
+      "version": "4.26.0"
+    },
+    "defusedxml": {
+      "ok": true,
+      "version": "0.7.1"
+    },
+    "timezone": {
+      "ok": true
+    },
+    "private_writable": {
+      "ok": true
+    }
+  },
+  "skill_count_at_project_root": 10,
+  "discovery_note": "Open the folder with pyproject.toml, AGENTS.md, and .agents. Test native skill access in each host.",
+  "network": "NOT_RUN",
+  "semantic_validation": "NOT_ASSESSED"
+}

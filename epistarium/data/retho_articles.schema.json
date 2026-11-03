@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Retho output alpha",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "article_id",
+      "status",
+      "document_version",
+      "fulltext_available",
+      "fulltext_read",
+      "source_identity_status"
+    ],
+    "properties": {
+      "article_id": {
+        "type": "string"
+      },
+      "doi": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "status": {
+        "enum": [
+          "metadata_only",
+          "abstract_only",
+          "fulltext_local",
+          "pdf_needs_ocr",
+          "pdf_invalid_or_missing",
+          "identity_conflict",
+          "identity_review_required"
+        ]
+      },
+      "document_version": {
+        "enum": [
+          "published",
+          "accepted_manuscript",
+          "preprint",
+          "unknown"
+        ]
+      },
+      "fulltext_available": {
+        "type": "boolean"
+      },
+      "fulltext_read": {
+        "const": false
+      },
+      "automatic_download_enabled": {
+        "type": "boolean"
+      },
+      "download_status": {
+        "type": "string"
+      },
+      "source_identity_status": {
+        "type": "string"
+      },
+      "pdf_sha256": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "pdf_path": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  }
+}

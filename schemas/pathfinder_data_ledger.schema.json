@@ -1,0 +1,362 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pathfinder Data Ledger v0.5.0 (48 kolom)",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "records",
+    "summary"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "epistarium.pathfinder.data.v1"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "record_id",
+          "source_id",
+          "jenis_data",
+          "kelompok_bukti",
+          "indikator",
+          "definisi_operasional",
+          "nilai",
+          "satuan",
+          "pembilang",
+          "penyebut",
+          "organisasi_penerbit",
+          "produsen_asli",
+          "judul_sumber",
+          "url",
+          "doi",
+          "file_sha256",
+          "versi",
+          "tanggal_peristiwa",
+          "tanggal_observasi",
+          "periode_referensi",
+          "tanggal_publikasi",
+          "tanggal_pengambilan",
+          "geografi",
+          "populasi",
+          "unit_analisis",
+          "cakupan",
+          "sampel",
+          "metode_sampling",
+          "metode_pengumpulan",
+          "metode_perhitungan",
+          "representativitas",
+          "level_estimasi",
+          "bias",
+          "tipe_akses",
+          "lisensi",
+          "penilaian_mutu",
+          "status_verifikasi",
+          "cuplikan",
+          "lokasi_bukti",
+          "kaitan_klaim",
+          "batas_generalisasi",
+          "asal_record",
+          "synthetic",
+          "issue_codes",
+          "rights_note",
+          "source_claimed_status",
+          "nilai_raw",
+          "nilai_parse_error"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "record_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+          },
+          "source_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+          },
+          "jenis_data": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "kelompok_bukti": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "indikator": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "definisi_operasional": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "nilai": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "satuan": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "pembilang": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "penyebut": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "organisasi_penerbit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "produsen_asli": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "judul_sumber": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "doi": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "file_sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "versi": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "tanggal_peristiwa": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "tanggal_observasi": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "periode_referensi": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "tanggal_publikasi": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "tanggal_pengambilan": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "geografi": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "populasi": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "unit_analisis": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "cakupan": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sampel": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "metode_sampling": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "metode_pengumpulan": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "metode_perhitungan": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "representativitas": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "level_estimasi": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "bias": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "tipe_akses": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "lisensi": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "penilaian_mutu": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status_verifikasi": {
+            "enum": [
+              "belum dapat diverifikasi"
+            ]
+          },
+          "cuplikan": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "lokasi_bukti": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "kaitan_klaim": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "batas_generalisasi": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "asal_record": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "synthetic": {
+            "type": "boolean"
+          },
+          "issue_codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "rights_note": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_claimed_status": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "nilai_raw": {
+            "type": [
+              "string",
+              "number",
+              "null"
+            ]
+          },
+          "nilai_parse_error": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "archive": "v070_install_candidate_2.zip",
+  "sha256": "7921dc0856910381458b405ae64f21a02f83c67f577ff21d679d8a8b23681778",
+  "file_count": 510,
+  "payload_hash_count": 509,
+  "skill_count": 10,
+  "wheel_sha256": "e2dfbe89b622e2a18f1840f65a51f128d2d71936013e89b454b88cf84d8c5fa3",
+  "errors": []
+}

@@ -1,0 +1,3 @@
+Sumber awal: Organisasi tidak mengakui kesalahan.
+Revisi berisiko: Organisasi mengakui kesalahan.
+Dua pernyataan ini mempunyai makna berbeda; audit Quilo tidak boleh menyatakan revisinya aman.

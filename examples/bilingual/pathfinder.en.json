@@ -1,0 +1,101 @@
+{
+  "license_notice": "SYNTHETIC TEST DATA. All values, organizations, and cases are fictional.",
+  "sources": [
+    {
+      "provider": "SyntheticLab",
+      "title": "Synthetic report A",
+      "url": "https://example.org/a",
+      "source_type": "dokumen uji"
+    },
+    {
+      "provider": "SyntheticLab",
+      "title": "Synthetic report A",
+      "url": "https://example.org/a",
+      "source_type": "dokumen uji"
+    }
+  ],
+  "records": [
+    {
+      "record_id": "S-01",
+      "jenis_data": "dokumentasi kasus",
+      "indikator": "Synthetic online service complaints",
+      "definisi_operasional": "Complaint reports in a simulated document",
+      "organisasi_penerbit": "SyntheticLab",
+      "judul_sumber": "Synthetic report A",
+      "url": "https://example.org/a",
+      "tanggal_peristiwa": "2025-06-10",
+      "tanggal_publikasi": "2025-07-01",
+      "geografi": "Depok",
+      "unit_analisis": "peristiwa",
+      "cuplikan": "Synthetic observation note"
+    },
+    {
+      "record_id": "S-02",
+      "jenis_data": "statistik resmi",
+      "indikator": "Share of fictional platform users",
+      "definisi_operasional": "Users divided by the population defined in the simulated report",
+      "nilai": 35.5,
+      "satuan": "%",
+      "penyebut": null,
+      "organisasi_penerbit": "Synthetic Statistics",
+      "judul_sumber": "Synthetic statistics",
+      "url": "https://example.org/stat",
+      "periode_referensi": "2025",
+      "geografi": "Indonesia",
+      "populasi": "residents of Indonesia"
+    },
+    {
+      "record_id": "S-03",
+      "jenis_data": "survei",
+      "indikator": "Opinions about a fictional platform",
+      "definisi_operasional": "Responses to a voluntary form",
+      "nilai": 64,
+      "satuan": "%",
+      "sampel": "200 voluntary participants",
+      "metode_sampling": "voluntary nonprobability",
+      "representativitas": "nationally representative",
+      "populasi": "residents of Indonesia",
+      "organisasi_penerbit": "SyntheticLab",
+      "judul_sumber": "Synthetic survey",
+      "url": "https://example.org/survey",
+      "periode_referensi": "2025"
+    },
+    {
+      "record_id": "S-04",
+      "jenis_data": "proksi digital",
+      "indikator": "Synthetic search interest",
+      "definisi_operasional": "Relative search index from 0 to 100",
+      "nilai": 77,
+      "satuan": "search count",
+      "organisasi_penerbit": "Google Trends",
+      "judul_sumber": "Google Trends simulation",
+      "url": "https://example.org/trends",
+      "periode_referensi": "2026"
+    },
+    {
+      "record_id": "S-05",
+      "jenis_data": "dokumentasi kasus",
+      "indikator": "Synthetic news coverage",
+      "definisi_operasional": "News articles recorded by a simulated system",
+      "nilai": 12,
+      "satuan": "articles",
+      "organisasi_penerbit": "GDELT",
+      "judul_sumber": "GDELT simulation",
+      "url": "https://example.org/news",
+      "periode_referensi": "2025"
+    },
+    {
+      "record_id": "S-06",
+      "jenis_data": "statistik resmi",
+      "indikator": "Share of fictional platform users",
+      "definisi_operasional": "Active accounts divided by all registered users",
+      "nilai": 40,
+      "satuan": "%",
+      "populasi": "application users",
+      "organisasi_penerbit": "Synthetic Statistics",
+      "judul_sumber": "Later synthetic statistics",
+      "url": "https://example.org/stat2",
+      "periode_referensi": "2026"
+    }
+  ]
+}

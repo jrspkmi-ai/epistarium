@@ -1,0 +1,30 @@
+[
+  {
+    "database": "scopus",
+    "title": "Nama Jurnal",
+    "issn": "1234-5678",
+    "eissn": "",
+    "official_url": "https://www.scopus.com/sources",
+    "coverage_start": 2020,
+    "coverage_end": 2025,
+    "checked_at": "2026-11-03",
+    "reviewed_by": "Nama pemeriksa",
+    "evidence_note": "Isi rincian snapshot yang benar-benar dibaca. Ini bukan bukti otomatis indeks artikel."
+  },
+  {
+    "database": "sinta",
+    "title": "Nama Jurnal Contoh",
+    "issn": "1111-2222",
+    "official_url": "https://sinta.kemdiktisaintek.go.id/journals",
+    "period_type": "accreditation",
+    "rank_periods": [
+      {"rank": "S2", "coverage_start": 2021, "coverage_end": 2024},
+      {"rank": "S3", "coverage_start": 2025, "coverage_end": 2026}
+    ],
+    "coverage_start": 2021,
+    "coverage_end": 2026,
+    "checked_at": "2026-11-03",
+    "reviewed_by": "Nama pemeriksa",
+    "evidence_note": "Contoh bentuk data untuk riwayat akreditasi, bukan status jurnal nyata."
+  }
+]

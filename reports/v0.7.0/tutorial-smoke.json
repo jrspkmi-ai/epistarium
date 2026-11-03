@@ -1,0 +1,902 @@
+{
+  "version": "0.7.0",
+  "language": "en",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "synthetic": true,
+  "native_activation": "NOT_RUN",
+  "commands": [
+    {
+      "command": [
+        "python",
+        "-I",
+        "-m",
+        "epistarium",
+        "jorhas-pathfind",
+        "--idea",
+        "Student AI use",
+        "--fixture",
+        "examples/bilingual/pathfinder.en.json",
+        "--lang",
+        "en",
+        "--as-of",
+        "2026-11-03",
+        "--out",
+        "/workspace/scratch/ba6836544cc9/v070_tutorial_en_final/path"
+      ],
+      "expected_exit_code": 3,
+      "exit_code": 3,
+      "status": "PASS",
+      "stdout": "warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.\nJorhas Path Finding: PARTIAL. Records: 6. Draft directions: 3. Read /workspace/scratch/ba6836544cc9/v070_tutorial_en_final/path/RUN_MANIFEST.json\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-m",
+        "epistarium",
+        "ideon-origo",
+        "--input",
+        "examples/bilingual/origo.en.json",
+        "--lang",
+        "en",
+        "--out",
+        "/workspace/scratch/ba6836544cc9/v070_tutorial_en_final/map"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.\nIdeon ORIGO: 3 alternatives, 21 questions. DOCX: CREATED_AND_REOPENED. Output: /workspace/scratch/ba6836544cc9/v070_tutorial_en_final/map\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-m",
+        "epistarium",
+        "liora-search",
+        "--topic",
+        "University communication",
+        "--fixture",
+        "examples/f4_synthetic/full_crossref.json",
+        "--as-of",
+        "2026-11-03",
+        "--lang",
+        "en",
+        "--out",
+        "/workspace/scratch/ba6836544cc9/v070_tutorial_en_final/liora"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.\nLiora: 2 unique candidates. Read /workspace/scratch/ba6836544cc9/v070_tutorial_en_final/liora/candidates.csv\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-m",
+        "epistarium",
+        "retho-retrieve",
+        "--candidates",
+        "/workspace/scratch/ba6836544cc9/v070_tutorial_en_final/liora/candidates.json",
+        "--library",
+        "examples/f2_synthetic/library.json",
+        "--lang",
+        "en",
+        "--out",
+        "/workspace/scratch/ba6836544cc9/v070_tutorial_en_final/retho"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.\nRetho: 2 candidates. Read /workspace/scratch/ba6836544cc9/v070_tutorial_en_final/retho/retrieval_report.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-m",
+        "epistarium",
+        "domares-read",
+        "--articles",
+        "/workspace/scratch/ba6836544cc9/v070_tutorial_en_final/retho/articles.json",
+        "--lang",
+        "en",
+        "--out",
+        "/workspace/scratch/ba6836544cc9/v070_tutorial_en_final/domares"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.\nDomares: 2 articles. Read /workspace/scratch/ba6836544cc9/v070_tutorial_en_final/domares/reading_report.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-m",
+        "epistarium",
+        "synthia-review",
+        "--readings",
+        "/workspace/scratch/ba6836544cc9/v070_tutorial_en_final/domares/critical_readings.json",
+        "--lang",
+        "en",
+        "--out",
+        "/workspace/scratch/ba6836544cc9/v070_tutorial_en_final/synthia"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.\nSynthia: 2 rows. XLSX: created. Read /workspace/scratch/ba6836544cc9/v070_tutorial_en_final/synthia/sintesis_sementara.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-m",
+        "epistarium",
+        "agresa-audit",
+        "--journals",
+        "examples/journals.json",
+        "--evidence",
+        "examples/index_evidence.json",
+        "--lang",
+        "en",
+        "--out",
+        "/workspace/scratch/ba6836544cc9/v070_tutorial_en_final/agresa"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.\nAgresa: 3 database results. Read /workspace/scratch/ba6836544cc9/v070_tutorial_en_final/agresa/laporan.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-m",
+        "epistarium",
+        "vanlan-audit",
+        "--claims",
+        "examples/claims.json",
+        "--pdf-dir",
+        "examples/pdfs",
+        "--lang",
+        "en",
+        "--out",
+        "/workspace/scratch/ba6836544cc9/v070_tutorial_en_final/vanlan"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.\nVanlan: 4 claims. Read /workspace/scratch/ba6836544cc9/v070_tutorial_en_final/vanlan/laporan.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-m",
+        "epistarium",
+        "quilo-audit",
+        "--text",
+        "examples/f3_synthetic/draf.txt",
+        "--lang",
+        "en",
+        "--out",
+        "/workspace/scratch/ba6836544cc9/v070_tutorial_en_final/quilo"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.\nQuilo: 2 editing notes. Read /workspace/scratch/ba6836544cc9/v070_tutorial_en_final/quilo/laporan_quilo.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-m",
+        "epistarium",
+        "huxley-audit",
+        "--docx",
+        "examples/f3_synthetic/naskah_sintetis.docx",
+        "--annotate-copy",
+        "--lang",
+        "en",
+        "--out",
+        "/workspace/scratch/ba6836544cc9/v070_tutorial_en_final/huxley"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout": "warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.\nHuxley: 6 citations and 5 references. Read /workspace/scratch/ba6836544cc9/v070_tutorial_en_final/huxley/laporan_huxley.md\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-m",
+        "epistarium",
+        "jorhas-full",
+        "--idea",
+        "University communication",
+        "--config",
+        "examples/bilingual/full.en.json",
+        "--lang",
+        "en",
+        "--as-of",
+        "2026-11-03",
+        "--out",
+        "/workspace/scratch/ba6836544cc9/v070_tutorial_en_final/full"
+      ],
+      "expected_exit_code": 3,
+      "exit_code": 3,
+      "status": "PASS",
+      "stdout": "warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.\nJorhas Full Research: PARTIAL. Read /workspace/scratch/ba6836544cc9/v070_tutorial_en_final/full/FULL_RESEARCH_MANIFEST.json\n",
+      "stderr": ""
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "agresa/index_audit.csv",
+      "size": 1315,
+      "sha256": "cc33710b268af214ae2eb022ce4e772e01ccd519101dd7a5d2adebbed8d7f8bf",
+      "status": "PASS"
+    },
+    {
+      "file": "agresa/index_audit.json",
+      "size": 2914,
+      "sha256": "3b9da8c768eeb0713af5687b58a5f40eecbf20cc43ca15bd857f0da1b9a983e2",
+      "status": "PASS"
+    },
+    {
+      "file": "agresa/index_audit_display.csv",
+      "size": 1315,
+      "sha256": "cc33710b268af214ae2eb022ce4e772e01ccd519101dd7a5d2adebbed8d7f8bf",
+      "status": "PASS"
+    },
+    {
+      "file": "agresa/laporan.md",
+      "size": 850,
+      "sha256": "16a4a6a574362f0ba159e4a2f5479bd657b82bffde9c073ef60e98f054208dce",
+      "status": "PASS"
+    },
+    {
+      "file": "domares/critical_readings.json",
+      "size": 11523,
+      "sha256": "a527924c853dd0fc6e948d344768609e33edb73813cd9914d3c1c08102d689f0",
+      "status": "PASS"
+    },
+    {
+      "file": "domares/reading_report.md",
+      "size": 511,
+      "sha256": "3c175e38350bc7fabd9e6b0cb13c514428738f5d377d24efe03b3c67c0b08be1",
+      "status": "PASS"
+    },
+    {
+      "file": "full/EVIDENCE_CROSSWALK.json",
+      "size": 3152,
+      "sha256": "6f5fb79cb3f6969e2befce713febdc893f1c1248e50231f9cf72e5ea330822e6",
+      "status": "PASS"
+    },
+    {
+      "file": "full/FULL_RESEARCH_MANIFEST.json",
+      "size": 14160,
+      "sha256": "087793f2199eefa860ce4a91844f28179b211f42d5494ec23cc0c01bfabaa8db",
+      "status": "PASS"
+    },
+    {
+      "file": "full/FULL_RESEARCH_RUN_LOG.json",
+      "size": 16256,
+      "sha256": "546facabaa7a9aab5d47ff4fd2cc3dd751cd9499b015918bb32bc03501641db6",
+      "status": "PASS"
+    },
+    {
+      "file": "full/FULL_RESEARCH_SUMMARY.md",
+      "size": 384,
+      "sha256": "f71a99148e2367773682e4c5e48268fdb91aa2030c27de41602e643b6c6d9c34",
+      "status": "PASS"
+    },
+    {
+      "file": "full/domares/critical_readings.json",
+      "size": 11455,
+      "sha256": "47cd0ef5bd82e1b67cd395606ac32fecd386bfede8e332275fe12b1ac99e9616",
+      "status": "PASS"
+    },
+    {
+      "file": "full/domares/reading_report.md",
+      "size": 511,
+      "sha256": "3c175e38350bc7fabd9e6b0cb13c514428738f5d377d24efe03b3c67c0b08be1",
+      "status": "PASS"
+    },
+    {
+      "file": "full/huxley/daftar_pustaka.csv",
+      "size": 503,
+      "sha256": "63e6f6560f563622b960384eb0fb1d0c5ef32c320e772b582c73caaa228418b4",
+      "status": "PASS"
+    },
+    {
+      "file": "full/huxley/daftar_pustaka_display.csv",
+      "size": 503,
+      "sha256": "856c93cbbc84c87b42b165c14ecbc0ba083a91d3ac451cd679d607f08fa39200",
+      "status": "PASS"
+    },
+    {
+      "file": "full/huxley/huxley_audit.json",
+      "size": 6264,
+      "sha256": "e06e90480361147c60b0893d607ad7ed7b03e84a1032886deeb32a0440120c69",
+      "status": "PASS"
+    },
+    {
+      "file": "full/huxley/laporan_huxley.md",
+      "size": 1233,
+      "sha256": "f8290abd6ce7d34c85cec4cf553ab2e092eb3d0006d0b76d0517086a54db77d7",
+      "status": "PASS"
+    },
+    {
+      "file": "full/huxley/referensi_kandidat_DRAFT.json",
+      "size": 57,
+      "sha256": "6859ea8d2762a1a096471e3798cc076b3cb6f85134dbeea23215e4f1e3296d3d",
+      "status": "PASS"
+    },
+    {
+      "file": "full/huxley/sitasi.csv",
+      "size": 511,
+      "sha256": "ae76ac4447bddb0b10c8725ee0979dcf50291802b15032a8345789780c687e29",
+      "status": "PASS"
+    },
+    {
+      "file": "full/huxley/sitasi_display.csv",
+      "size": 511,
+      "sha256": "6be229bbac2356676a91727c33ceef5c3da9a4e5c2c95a913c34d0ee57a596bd",
+      "status": "PASS"
+    },
+    {
+      "file": "full/ideon/EPISTARIUM_ORIGO_Research_Mapping_University_communication_v01.docx",
+      "size": 39618,
+      "sha256": "6906548cef3fbcf2dc247ae6b3c95e85fdbd85ed80cbe05e4a56451cdb9e9293",
+      "status": "PASS"
+    },
+    {
+      "file": "full/ideon/ideon_origo.json",
+      "size": 14005,
+      "sha256": "cbcaf2e05f2a82b9dcdbbde6451169fc851ff78e330525a98e04651c842b424f",
+      "status": "PASS"
+    },
+    {
+      "file": "full/ideon/ringkasan_origo.md",
+      "size": 1554,
+      "sha256": "e22aad07cfdda7a16be686b3677e43586ff9cb698f3cbe76ac940df67cfd704b",
+      "status": "PASS"
+    },
+    {
+      "file": "full/liora/candidates.csv",
+      "size": 1485,
+      "sha256": "66132e746f48cfa084d0a0608b7eb60f3e7a25e8a52009bd65fa59057a441847",
+      "status": "PASS"
+    },
+    {
+      "file": "full/liora/candidates.json",
+      "size": 3677,
+      "sha256": "187270ba75669ac9428d70dcf89d8909debebb6e2526dd2d73fa7539827f90bc",
+      "status": "PASS"
+    },
+    {
+      "file": "full/liora/candidates.ris",
+      "size": 310,
+      "sha256": "05554862fe793be59750e59779ed8341b8a3b654a1be395673404b159f22bc1d",
+      "status": "PASS"
+    },
+    {
+      "file": "full/liora/candidates_display.csv",
+      "size": 1485,
+      "sha256": "f4558dd457dca66a4d0c1f24939a5004dd8b1935989052ea371962c47cf779b2",
+      "status": "PASS"
+    },
+    {
+      "file": "full/liora/search_plan.json",
+      "size": 1184,
+      "sha256": "0e50393572f6ac8dd518884487b86a3b319c84f80a439050af2563f8b4214f96",
+      "status": "PASS"
+    },
+    {
+      "file": "full/path_finding/DATA_GAPS.md",
+      "size": 972,
+      "sha256": "1e4c7b01a9dab9d2c670bb3ef432d47522457211d0711eadc30ae7b4b0e770ec",
+      "status": "PASS"
+    },
+    {
+      "file": "full/path_finding/DATA_LEDGER.csv",
+      "size": 3983,
+      "sha256": "e78c7c375b7459cd731bfaf262fb65d8ec7f6a7a0174e66d47700aa49b15d54f",
+      "status": "PASS"
+    },
+    {
+      "file": "full/path_finding/DATA_LEDGER.json",
+      "size": 11909,
+      "sha256": "b08e5139dd2291627654b755b67baa31add30963fd3de29d3cdc9bc38c27f069",
+      "status": "PASS"
+    },
+    {
+      "file": "full/path_finding/DATA_LEDGER_display.csv",
+      "size": 4679,
+      "sha256": "7df4fdd55ae4c79ab59a434f7f4e8573339a408a7c4249d220660d9ee0d8b2c6",
+      "status": "PASS"
+    },
+    {
+      "file": "full/path_finding/PATH_FINDING_REPORT.md",
+      "size": 5065,
+      "sha256": "fee21091cb2689cfeb032ffe1e17784b2f20f757a9e56e88529faa8d79069365",
+      "status": "PASS"
+    },
+    {
+      "file": "full/path_finding/PHENOMENON_TIMELINE.csv",
+      "size": 164,
+      "sha256": "8dadc66fa3062f1d785107a2476d26a1750103925e0e6c8b12f3cfaf08287ecc",
+      "status": "PASS"
+    },
+    {
+      "file": "full/path_finding/PHENOMENON_TIMELINE.json",
+      "size": 241,
+      "sha256": "9551e7f342d8729158a5bc3d833e96dc2301a0a5f272078eb0a0487f96293aac",
+      "status": "PASS"
+    },
+    {
+      "file": "full/path_finding/PHENOMENON_TIMELINE_display.csv",
+      "size": 164,
+      "sha256": "7ce4e6689b9fa7aa7fde6360fc5de6a2830abe9df69bb3b6ca119123511f2cba",
+      "status": "PASS"
+    },
+    {
+      "file": "full/path_finding/RESEARCH_OPPORTUNITIES.json",
+      "size": 5163,
+      "sha256": "a6c8b6ab4f17ab7a88ff260afd0fd84b906a7e52a91494c85f15a19028447ca6",
+      "status": "PASS"
+    },
+    {
+      "file": "full/path_finding/RUN_LOG.json",
+      "size": 6284,
+      "sha256": "47ca1bf4fa644185ebb7e7bd1646c1f2962badacc61a64ba8951d696d429bed7",
+      "status": "PASS"
+    },
+    {
+      "file": "full/path_finding/RUN_MANIFEST.json",
+      "size": 2097,
+      "sha256": "42fab1ef16450a6fc099c749faaf695068d1dd2c61aea0b16ba5ec95b4adc830",
+      "status": "PASS"
+    },
+    {
+      "file": "full/path_finding/SOURCE_LEDGER.csv",
+      "size": 8149,
+      "sha256": "034489efe12a7cc65f3c42cef51b4c555e728131f37aee257448aba1edcf487a",
+      "status": "PASS"
+    },
+    {
+      "file": "full/path_finding/SOURCE_LEDGER.json",
+      "size": 15754,
+      "sha256": "3ae027874ab11cd7f8c3a399d552a9addafe1f2033a8e4660446062c642ab084",
+      "status": "PASS"
+    },
+    {
+      "file": "full/path_finding/SOURCE_LEDGER_display.csv",
+      "size": 8149,
+      "sha256": "0d42f9ce2ee5353a9cfcc789d9366b2acdd80b6781b42f37ab8c758a45ca3627",
+      "status": "PASS"
+    },
+    {
+      "file": "full/path_finding/SOURCE_PLAN.json",
+      "size": 1356,
+      "sha256": "3cf4edf2f851cafe52ee3baa029a2cad150415a16b19dc3c35061002ad45a13b",
+      "status": "PASS"
+    },
+    {
+      "file": "full/quilo/audit_quilo.json",
+      "size": 689,
+      "sha256": "10218697777a0968b692da5dd040e705e55af53850ec8d7a138f1c41ad90c380",
+      "status": "PASS"
+    },
+    {
+      "file": "full/quilo/laporan_quilo.md",
+      "size": 253,
+      "sha256": "1463e9470c85582ace6943ffc8fbeb0ea3574a275fad6c3491bdb109fffc961a",
+      "status": "PASS"
+    },
+    {
+      "file": "full/quilo/perubahan.diff",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "PASS"
+    },
+    {
+      "file": "full/quilo/usulan_sunting.txt",
+      "size": 1554,
+      "sha256": "e22aad07cfdda7a16be686b3677e43586ff9cb698f3cbe76ac940df67cfd704b",
+      "status": "PASS"
+    },
+    {
+      "file": "full/retho/articles.json",
+      "size": 3922,
+      "sha256": "25ffe6a9afb70b9c0609adb7536eab2474fb915f3e79d786e5a718236c7a01be",
+      "status": "PASS"
+    },
+    {
+      "file": "full/retho/retrieval_report.md",
+      "size": 537,
+      "sha256": "68ae7cd7047757a1e2a3aeca9ac13bfe3c73aaeced7ef2bb89551455e77373ee",
+      "status": "PASS"
+    },
+    {
+      "file": "full/synthia/audit_bukti.csv",
+      "size": 2505,
+      "sha256": "edba1cde216fa0b5d920ed627caa60f17dfdf43eca1922e863d7ca688ea6a8ad",
+      "status": "PASS"
+    },
+    {
+      "file": "full/synthia/audit_bukti_display.csv",
+      "size": 2497,
+      "sha256": "d4f8a4621acd14d4201f2159a5da5869068cf44ce0c0ae9854620747681ec520",
+      "status": "PASS"
+    },
+    {
+      "file": "full/synthia/database_literatur.csv",
+      "size": 2561,
+      "sha256": "901c1b13d4acc5b59ea633c7dd8a087172348cd8d3af96ee18d0820e067dcfc1",
+      "status": "PASS"
+    },
+    {
+      "file": "full/synthia/database_literatur.json",
+      "size": 4400,
+      "sha256": "113a3c29238d57b7484f55eca2b33ae332399147923dc63e2504f777bd966d4e",
+      "status": "PASS"
+    },
+    {
+      "file": "full/synthia/database_literatur.xlsx",
+      "size": 8878,
+      "sha256": "f39757ea8df22aaa4edfb464b70e4dbbecc640e5f2c95dbcac918e38b8f8a930",
+      "status": "PASS"
+    },
+    {
+      "file": "full/synthia/database_literatur_display.csv",
+      "size": 2541,
+      "sha256": "1fcbeb900a7050a83f99fae57c6fc37a26d5a883a6ff2dd940a350296f64db5c",
+      "status": "PASS"
+    },
+    {
+      "file": "full/synthia/export_status.json",
+      "size": 411,
+      "sha256": "4695f697cb908a669258537ddaaa0b87164b00f3c3229ad9b0003a4f01debe38",
+      "status": "PASS"
+    },
+    {
+      "file": "full/synthia/sintesis_sementara.md",
+      "size": 1338,
+      "sha256": "97f9a02a79cec94b5d5cb784796b9989206b4ac0451ac0aa0325f2d2b37854a1",
+      "status": "PASS"
+    },
+    {
+      "file": "full/synthia/template_merge_audit.json",
+      "size": 265,
+      "sha256": "e796eb0647d0921885d78faec934f98d4994902417039f1c440696dd0167b3eb",
+      "status": "PASS"
+    },
+    {
+      "file": "huxley/daftar_pustaka.csv",
+      "size": 503,
+      "sha256": "63e6f6560f563622b960384eb0fb1d0c5ef32c320e772b582c73caaa228418b4",
+      "status": "PASS"
+    },
+    {
+      "file": "huxley/daftar_pustaka_display.csv",
+      "size": 503,
+      "sha256": "856c93cbbc84c87b42b165c14ecbc0ba083a91d3ac451cd679d607f08fa39200",
+      "status": "PASS"
+    },
+    {
+      "file": "huxley/huxley_audit.json",
+      "size": 7069,
+      "sha256": "27e27fed90616199d308f177c4ef51284435eb16aa0b02c90900b9abcaf98d1f",
+      "status": "PASS"
+    },
+    {
+      "file": "huxley/laporan_huxley.md",
+      "size": 1258,
+      "sha256": "b55d8bfb40c09f25ec856542cb339b82a2ff6cb8e8387d6f8001c191b96e4a7b",
+      "status": "PASS"
+    },
+    {
+      "file": "huxley/naskah_sintetis_audit_copy.docx",
+      "size": 37934,
+      "sha256": "34ab3fe57b4a627b4b6fee23ab5529f01015aa305554eb292db12eba607cc205",
+      "status": "PASS"
+    },
+    {
+      "file": "huxley/referensi_kandidat_DRAFT.json",
+      "size": 57,
+      "sha256": "6859ea8d2762a1a096471e3798cc076b3cb6f85134dbeea23215e4f1e3296d3d",
+      "status": "PASS"
+    },
+    {
+      "file": "huxley/sitasi.csv",
+      "size": 511,
+      "sha256": "ae76ac4447bddb0b10c8725ee0979dcf50291802b15032a8345789780c687e29",
+      "status": "PASS"
+    },
+    {
+      "file": "huxley/sitasi_display.csv",
+      "size": 511,
+      "sha256": "6be229bbac2356676a91727c33ceef5c3da9a4e5c2c95a913c34d0ee57a596bd",
+      "status": "PASS"
+    },
+    {
+      "file": "liora/candidates.csv",
+      "size": 1553,
+      "sha256": "cbfe5e9208cde793f821eafb75e451c66ba010f70206a917c6c9ac54fadd1b0f",
+      "status": "PASS"
+    },
+    {
+      "file": "liora/candidates.json",
+      "size": 3779,
+      "sha256": "ad451453390368e462ad92c6941b5980bfcd4168cc1ebcd1176df17057e21dbb",
+      "status": "PASS"
+    },
+    {
+      "file": "liora/candidates.ris",
+      "size": 310,
+      "sha256": "05554862fe793be59750e59779ed8341b8a3b654a1be395673404b159f22bc1d",
+      "status": "PASS"
+    },
+    {
+      "file": "liora/candidates_display.csv",
+      "size": 1553,
+      "sha256": "94e68e738e36cb2d41d934acaf02c5c12cf5f45f203a1bcb06d1d643e95ee02c",
+      "status": "PASS"
+    },
+    {
+      "file": "liora/search_plan.json",
+      "size": 1218,
+      "sha256": "48cba9106e1a7bf5400bf256a8258aba40481994517d35a2e93caa0ba565243d",
+      "status": "PASS"
+    },
+    {
+      "file": "map/EPISTARIUM_ORIGO_Research_Mapping_Digital_communication_at_university_v01.docx",
+      "size": 39555,
+      "sha256": "e62062fb0b72b7c9df830f242dc736e31b245312af5b5baf7f2f3a55219ec03a",
+      "status": "PASS"
+    },
+    {
+      "file": "map/ideon_origo.json",
+      "size": 11282,
+      "sha256": "e010e1df76ae40e71f84a255eafc136c51c0c5e89b9c4fe5de86ba9b87577f90",
+      "status": "PASS"
+    },
+    {
+      "file": "map/ringkasan_origo.md",
+      "size": 892,
+      "sha256": "dbbfeb0f99fb5106d79981903081ec9d0ac2a6e745e7e93708406f6c4678e97c",
+      "status": "PASS"
+    },
+    {
+      "file": "path/DATA_GAPS.md",
+      "size": 972,
+      "sha256": "1e4c7b01a9dab9d2c670bb3ef432d47522457211d0711eadc30ae7b4b0e770ec",
+      "status": "PASS"
+    },
+    {
+      "file": "path/DATA_LEDGER.csv",
+      "size": 3983,
+      "sha256": "a3900779cada9f9a4a5cc69c6d5690eddfcc29b22c13b449035c56bfae94f437",
+      "status": "PASS"
+    },
+    {
+      "file": "path/DATA_LEDGER.json",
+      "size": 11909,
+      "sha256": "c5617fb88fe205c2ac412a1994c37e26a5c48a12c5f324a9989390fe8b3d0e66",
+      "status": "PASS"
+    },
+    {
+      "file": "path/DATA_LEDGER_display.csv",
+      "size": 4679,
+      "sha256": "81a3fb6fc2f9e9fb84a57fe55e53bc0bdffe2e941bd52ba9938393b2155a947f",
+      "status": "PASS"
+    },
+    {
+      "file": "path/PATH_FINDING_REPORT.md",
+      "size": 5025,
+      "sha256": "8cc89af887344121f0c7deca060837518ba52bae9a3d64c9f82b4b1f69828d17",
+      "status": "PASS"
+    },
+    {
+      "file": "path/PHENOMENON_TIMELINE.csv",
+      "size": 164,
+      "sha256": "8dadc66fa3062f1d785107a2476d26a1750103925e0e6c8b12f3cfaf08287ecc",
+      "status": "PASS"
+    },
+    {
+      "file": "path/PHENOMENON_TIMELINE.json",
+      "size": 241,
+      "sha256": "9551e7f342d8729158a5bc3d833e96dc2301a0a5f272078eb0a0487f96293aac",
+      "status": "PASS"
+    },
+    {
+      "file": "path/PHENOMENON_TIMELINE_display.csv",
+      "size": 164,
+      "sha256": "7ce4e6689b9fa7aa7fde6360fc5de6a2830abe9df69bb3b6ca119123511f2cba",
+      "status": "PASS"
+    },
+    {
+      "file": "path/RESEARCH_OPPORTUNITIES.json",
+      "size": 5133,
+      "sha256": "60fb009b75261091de033648817fcde8ea0884f523f99f402479b8c0e9afde84",
+      "status": "PASS"
+    },
+    {
+      "file": "path/RUN_LOG.json",
+      "size": 6154,
+      "sha256": "30855f1befbd7a95ae2e64fb51f514f8386726f6874df8b5c3a4bbf18a435fb5",
+      "status": "PASS"
+    },
+    {
+      "file": "path/RUN_MANIFEST.json",
+      "size": 2087,
+      "sha256": "7a56f41cb621fba6cdbecc4ed93fea687cc1039c1302a65ba24d5a2466e9c4b0",
+      "status": "PASS"
+    },
+    {
+      "file": "path/SOURCE_LEDGER.csv",
+      "size": 8149,
+      "sha256": "034489efe12a7cc65f3c42cef51b4c555e728131f37aee257448aba1edcf487a",
+      "status": "PASS"
+    },
+    {
+      "file": "path/SOURCE_LEDGER.json",
+      "size": 15754,
+      "sha256": "3ae027874ab11cd7f8c3a399d552a9addafe1f2033a8e4660446062c642ab084",
+      "status": "PASS"
+    },
+    {
+      "file": "path/SOURCE_LEDGER_display.csv",
+      "size": 8149,
+      "sha256": "0d42f9ce2ee5353a9cfcc789d9366b2acdd80b6781b42f37ab8c758a45ca3627",
+      "status": "PASS"
+    },
+    {
+      "file": "path/SOURCE_PLAN.json",
+      "size": 1346,
+      "sha256": "437e3c6a55ed94381ddc480025b7b3a9a4bdc0320d778368d079ec89ded0d4f1",
+      "status": "PASS"
+    },
+    {
+      "file": "quilo/audit_quilo.json",
+      "size": 1234,
+      "sha256": "72dc22256508d00123893922afdc1208c91fa892755f1ee892adaaab54857967",
+      "status": "PASS"
+    },
+    {
+      "file": "quilo/laporan_quilo.md",
+      "size": 443,
+      "sha256": "b1281ab5a9db50e2ef5b10eadd6df17a0ff8ab38b20dd052c72af395955512cb",
+      "status": "PASS"
+    },
+    {
+      "file": "quilo/perubahan.diff",
+      "size": 412,
+      "sha256": "340d0018b7233c6c1098c06406cd949353733b55bd44c4f1a085a5eb51bbb545",
+      "status": "PASS"
+    },
+    {
+      "file": "quilo/usulan_sunting.txt",
+      "size": 176,
+      "sha256": "5133d35c14eec5c1d14ddb4f515a3e56ba1b0bd9a68ab6529348de32d38c696f",
+      "status": "PASS"
+    },
+    {
+      "file": "retho/articles.json",
+      "size": 3990,
+      "sha256": "142a1be3e14fb6b78053d63f7030f85feb16dd16b2ce935a1235727295559976",
+      "status": "PASS"
+    },
+    {
+      "file": "retho/retrieval_report.md",
+      "size": 537,
+      "sha256": "68ae7cd7047757a1e2a3aeca9ac13bfe3c73aaeced7ef2bb89551455e77373ee",
+      "status": "PASS"
+    },
+    {
+      "file": "synthia/audit_bukti.csv",
+      "size": 2505,
+      "sha256": "edba1cde216fa0b5d920ed627caa60f17dfdf43eca1922e863d7ca688ea6a8ad",
+      "status": "PASS"
+    },
+    {
+      "file": "synthia/audit_bukti_display.csv",
+      "size": 2497,
+      "sha256": "d4f8a4621acd14d4201f2159a5da5869068cf44ce0c0ae9854620747681ec520",
+      "status": "PASS"
+    },
+    {
+      "file": "synthia/database_literatur.csv",
+      "size": 2561,
+      "sha256": "901c1b13d4acc5b59ea633c7dd8a087172348cd8d3af96ee18d0820e067dcfc1",
+      "status": "PASS"
+    },
+    {
+      "file": "synthia/database_literatur.json",
+      "size": 4400,
+      "sha256": "113a3c29238d57b7484f55eca2b33ae332399147923dc63e2504f777bd966d4e",
+      "status": "PASS"
+    },
+    {
+      "file": "synthia/database_literatur.xlsx",
+      "size": 8879,
+      "sha256": "e88e746f080c6614c4446f3bff04eb4798ce3df94929f226108cb94e9fe71d17",
+      "status": "PASS"
+    },
+    {
+      "file": "synthia/database_literatur_display.csv",
+      "size": 2541,
+      "sha256": "1fcbeb900a7050a83f99fae57c6fc37a26d5a883a6ff2dd940a350296f64db5c",
+      "status": "PASS"
+    },
+    {
+      "file": "synthia/export_status.json",
+      "size": 411,
+      "sha256": "446b70621c127814a29e10ad99416f7a9828ab28ae6e3454f7f60efdb59ec6ae",
+      "status": "PASS"
+    },
+    {
+      "file": "synthia/sintesis_sementara.md",
+      "size": 1338,
+      "sha256": "4edbb01bc24ec0644d2c4b5d95e0c7129c855ab7f0b9e28da9ccd5f0fb2fb32b",
+      "status": "PASS"
+    },
+    {
+      "file": "synthia/template_merge_audit.json",
+      "size": 265,
+      "sha256": "e796eb0647d0921885d78faec934f98d4994902417039f1c440696dd0167b3eb",
+      "status": "PASS"
+    },
+    {
+      "file": "vanlan/audit.csv",
+      "size": 2268,
+      "sha256": "1375ca4116a1d68412fbe6c279bf23933fb433121c8f9f123c074d43cedc36cc",
+      "status": "PASS"
+    },
+    {
+      "file": "vanlan/audit.json",
+      "size": 5967,
+      "sha256": "27eaba81bd1fabf461241dc01e28b6cfb16cc9b3effa6f19440670f564d03cf4",
+      "status": "PASS"
+    },
+    {
+      "file": "vanlan/audit_display.csv",
+      "size": 2229,
+      "sha256": "5b366dfe035b47a2358aad9702cef51a10579e036fbdd3fe609aaadd0dc5d8b0",
+      "status": "PASS"
+    },
+    {
+      "file": "vanlan/contoh_sintetis_annotated.pdf",
+      "size": 2712,
+      "sha256": "2ea34aa3200e91831209945e9dc56d239868dafdfcc003a807d1efb9b914656e",
+      "status": "PASS"
+    },
+    {
+      "file": "vanlan/laporan.md",
+      "size": 1581,
+      "sha256": "4e2446d525d81708647ebebb8e8943fc9de9af65d594b97dfa51ab3a15834177",
+      "status": "PASS"
+    }
+  ],
+  "required_artifact_count": 8,
+  "missing_required": [],
+  "status": "PASS"
+}

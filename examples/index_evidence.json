@@ -1,0 +1,15 @@
+[
+  {
+    "database": "sinta",
+    "title": "Jurnal Simulasi A",
+    "issn": "1234-5678",
+    "rank": "S2",
+    "coverage_start": 2021,
+    "coverage_end": 2025,
+    "official_url": "https://sinta.kemdiktisaintek.go.id/journals",
+    "checked_at": "2026-11-03",
+    "reviewed_by": "Pemeriksa Contoh",
+    "evidence_note": "SIMULASI SAJA, bukan jurnal atau status riil",
+    "period_type": "accreditation"
+  }
+]

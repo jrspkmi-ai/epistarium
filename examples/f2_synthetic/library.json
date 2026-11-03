@@ -1,0 +1,22 @@
+{
+  "10.1234/epistarium.test.full": {
+    "pdf_path": "examples/f2_synthetic/pdfs/fulltext.pdf",
+    "version": "publishedVersion",
+    "rights_basis": "synthetic_self_created"
+  },
+  "10.1234/epistarium.test.conflict": {
+    "pdf_path": "examples/f2_synthetic/pdfs/wrong_identity.pdf",
+    "version": "acceptedVersion",
+    "rights_basis": "synthetic_self_created"
+  },
+  "10.1234/epistarium.test.missing": {
+    "pdf_path": "examples/f2_synthetic/pdfs/not_exist.pdf",
+    "version": "submittedVersion",
+    "rights_basis": "synthetic_self_created"
+  },
+  "10.1234/epistarium.test.scan": {
+    "pdf_path": "examples/f2_synthetic/pdfs/scan.pdf",
+    "version": "submittedVersion",
+    "rights_basis": "synthetic_self_created"
+  }
+}

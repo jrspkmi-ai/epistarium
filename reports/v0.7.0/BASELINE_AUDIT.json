@@ -1,0 +1,18 @@
+{
+  "source_version": "0.6.0",
+  "source_zip": "EPISTARIUM_v0.6.0(1).zip",
+  "sha256": "24f4766373cee9a0113c75ed5436057e8f4677cf692e9d4b7e4f14ace02f9bc3",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "tests": {
+    "PASS": 341,
+    "FAIL": 0,
+    "BLOCKED": 0,
+    "NOT_RUN": 0
+  },
+  "native_hosts": {
+    "NOT_RUN": 10
+  },
+  "skills": 10
+}

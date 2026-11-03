@@ -1,0 +1,22 @@
+{
+  "self_declared_statuses": {
+    "belum dapat diverifikasi": "belum dapat diverifikasi",
+    "bertentangan": "bertentangan",
+    "didukung sebagian": "didukung sebagian",
+    "hipotesis atau rekomendasi": "hipotesis atau rekomendasi",
+    "inferensi peneliti/AI": "inferensi peneliti/AI",
+    "terverifikasi": "belum dapat diverifikasi",
+    "tidak ditemukan": "tidak ditemukan"
+  },
+  "dedup": {
+    "retained_ids": [
+      "A"
+    ],
+    "removed_ids": [
+      "B"
+    ],
+    "record_reference": "B",
+    "dangling": true
+  },
+  "origo_blocked_reported": "SUCCESS"
+}

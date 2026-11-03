@@ -1,0 +1,29 @@
+[
+  {
+    "id": "K001",
+    "text": "Peneliti menulis: \"Tim riset melakukan wawancara terhadap 20 informan.\"",
+    "jenis": "kutipan_langsung",
+    "source_pdf": "contoh_sintetis.pdf",
+    "kutipan_asli": "Tim riset melakukan wawancara terhadap 20 informan."
+  },
+  {
+    "id": "K002",
+    "text": "Tim riset mewawancarai 200 orang.",
+    "jenis": "parafrasa",
+    "source_pdf": "contoh_sintetis.pdf",
+    "evidence_anchor": "Tim riset melakukan wawancara terhadap 20 informan."
+  },
+  {
+    "id": "K003",
+    "text": "Peneliti menulis \"Laporan diterbitkan pada 20 Mei 2024.\"",
+    "jenis": "kutipan_langsung",
+    "source_pdf": "contoh_sintetis.pdf",
+    "kutipan_asli": "Laporan diterbitkan pada 20 Mei 2024."
+  },
+  {
+    "id": "K004",
+    "text": "Sumber lainnya tidak tersedia.",
+    "jenis": "parafrasa",
+    "source_pdf": "hilang.pdf"
+  }
+]

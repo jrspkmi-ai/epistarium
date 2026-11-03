@@ -1,0 +1,13 @@
+{
+  "pathfinder_fixture": "examples/f4_synthetic/pathfinder_cases.json",
+  "liora_fixture": "examples/f4_synthetic/full_crossref.json",
+  "retho_library": "examples/f2_synthetic/library.json",
+  "huxley_docx": "examples/f3_synthetic/naskah_sintetis.docx",
+  "synthia_xlsx": true,
+  "origo_mode": "ELABORATE_21",
+  "akses_data": {
+    "corpus": "unconfirmed",
+    "participants": "unconfirmed"
+  },
+  "language": "id"
+}

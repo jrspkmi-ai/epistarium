@@ -1,0 +1,26 @@
+{
+  "project": "AminBlg/SimpleEnglish",
+  "url": "https://github.com/AminBlg/SimpleEnglish",
+  "skill_version": "2.1.1",
+  "mode": "Plain",
+  "read_date": "2026-11-03",
+  "files": [
+    {
+      "path": "skills/simple-english/SKILL.md",
+      "blob_sha": "18968a8a2c631b577327fde0271940335c6a375c"
+    },
+    {
+      "path": "skills/simple-english/references/use-cases.md",
+      "blob_sha": "10b2862740a57f3b091a8c7ff7e5399d548dea18"
+    },
+    {
+      "path": "skills/simple-english/references/word-swaps.md",
+      "blob_sha": "5747f6cb58c029c52b09620f2212acd3ae843336"
+    },
+    {
+      "path": "LICENSE",
+      "blob_sha": "e3dd42a3e6dc3ba07a742a83d27b5377a719e814"
+    }
+  ],
+  "application": "English program text and active documentation. No extra persona, hooks, or global skill installation."
+}

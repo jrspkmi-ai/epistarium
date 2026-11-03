@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Domares output alpha",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "article_id",
+      "reading_level",
+      "reported_by_author",
+      "ai_audit_observations",
+      "requires_human_review"
+    ],
+    "properties": {
+      "article_id": {
+        "type": "string"
+      },
+      "integrity_status": {
+        "type": "string"
+      },
+      "reading_level": {
+        "type": "string"
+      },
+      "reported_by_author": {
+        "type": "object"
+      },
+      "ai_audit_observations": {
+        "type": "array"
+      },
+      "requires_human_review": {
+        "const": true
+      }
+    }
+  }
+}

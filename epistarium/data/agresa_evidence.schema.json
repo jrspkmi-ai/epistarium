@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agresa User-Supplied Evidence V0.1.2",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "database",
+      "title",
+      "issn",
+      "official_url",
+      "checked_at",
+      "reviewed_by",
+      "evidence_note"
+    ],
+    "properties": {
+      "database": {
+        "enum": [
+          "scopus",
+          "wos",
+          "sinta"
+        ]
+      },
+      "title": {
+        "type": "string"
+      },
+      "issn": {
+        "type": "string"
+      },
+      "official_url": {
+        "type": "string",
+        "format": "uri"
+      },
+      "coverage_start": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "coverage_end": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "checked_at": {
+        "type": "string"
+      },
+      "reviewed_by": {
+        "type": "string"
+      },
+      "evidence_note": {
+        "type": "string"
+      },
+      "rank": {
+        "enum": [
+          "S1",
+          "S2",
+          "S3",
+          "S4",
+          ""
+        ]
+      },
+      "article_record": {
+        "type": "object"
+      },
+      "eissn": {
+        "type": "string"
+      },
+      "issns": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "period_type": {
+        "enum": [
+          "accreditation",
+          "coverage",
+          "other"
+        ]
+      },
+      "wos_collection": {
+        "enum": [
+          "SCIE",
+          "SSCI",
+          "AHCI",
+          "ESCI"
+        ]
+      },
+      "wos_collections": {
+        "type": "array",
+        "items": {
+          "enum": [
+            "SCIE",
+            "SSCI",
+            "AHCI",
+            "ESCI"
+          ]
+        }
+      },
+      "rank_periods": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "rank",
+            "coverage_start",
+            "coverage_end"
+          ],
+          "properties": {
+            "rank": {
+              "enum": [
+                "S1",
+                "S2",
+                "S3",
+                "S4"
+              ]
+            },
+            "coverage_start": {
+              "type": "integer"
+            },
+            "coverage_end": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "language": "id",
+  "origin_note": "Daftar 21 tema dari inventaris pertanyaan yang telah disetujui pengguna dalam Playbook V1.1. Redaksi pertanyaan dalam ORIGO dirumuskan ulang untuk desain mandiri.",
+  "questions": [
+    {"id":"Q01","title":"Mengapa topik tersebut dipilih?","map_node":"realitas_fenomena"},
+    {"id":"Q02","title":"Apa persoalan utama yang hendak dipahami atau dijelaskan?","map_node":"fokus_penelitian"},
+    {"id":"Q03","title":"Bagaimana keadaan empiris yang ditemukan (Das Sein)?","map_node":"realitas_fenomena"},
+    {"id":"Q04","title":"Apa dasar penilaian atas kondisi ideal (Das Sollen)?","map_node":"landasan_teori"},
+    {"id":"Q05","title":"Mengapa penelitian relevan pada periode yang dipilih?","map_node":"realitas_fenomena"},
+    {"id":"Q06","title":"Bagaimana posisi perkembangan kajian (state of the art)?","map_node":"potensi_kebaruan"},
+    {"id":"Q07","title":"Apa kontribusi baru yang diduga (novelty)?","map_node":"potensi_kebaruan"},
+    {"id":"Q08","title":"Apa kesenjangan penelitian yang perlu diuji?","map_node":"potensi_kebaruan"},
+    {"id":"Q09","title":"Kontribusi akademik dan praktis apa yang mungkin dihasilkan?","map_node":"fokus_penelitian"},
+    {"id":"Q10","title":"Apa batas objek, unit analisis, waktu dan konteks penelitian?","map_node":"fokus_penelitian"},
+    {"id":"Q11","title":"Bagaimana hubungan konsep-konsep kunci?","map_node":"landasan_teori"},
+    {"id":"Q12","title":"Mengapa teori itu sesuai dengan fokus penelitian?","map_node":"landasan_teori"},
+    {"id":"Q13","title":"Dalam aspek apa desain ini berbeda dari studi terdahulu?","map_node":"potensi_kebaruan"},
+    {"id":"Q14","title":"Mengapa pendekatan dan desain metode tersebut dipilih?","map_node":"arah_metodologi"},
+    {"id":"Q15","title":"Bagaimana data dapat diperoleh secara sah dan realistis?","map_node":"arah_metodologi"},
+    {"id":"Q16","title":"Bagaimana data akan diperiksa dan dianalisis?","map_node":"arah_metodologi"},
+    {"id":"Q17","title":"Bagaimana mutu dan keterlacakan bukti dijaga?","map_node":"arah_metodologi"},
+    {"id":"Q18","title":"Apa asumsi ontologis penelitian?","map_node":"landasan_teori"},
+    {"id":"Q19","title":"Apa asumsi epistemologis penelitian?","map_node":"arah_metodologi"},
+    {"id":"Q20","title":"Nilai dan kewajiban etis apa yang membatasi proses penelitian?","map_node":"arah_metodologi"},
+    {"id":"Q21","title":"Paradigma apa yang paling koheren dengan rancangan?","map_node":"landasan_teori"}
+  ]
+}

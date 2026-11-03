@@ -1,0 +1,15 @@
+{
+  "license_notice": "DATA SINTETIS khusus pengujian. Semua nilai, organisasi, dan kasus fiktif.",
+  "sources": [
+    {"provider":"SyntheticLab","title":"Laporan fiktif A","url":"https://example.org/a","source_type":"dokumen uji"},
+    {"provider":"SyntheticLab","title":"Laporan fiktif A","url":"https://example.org/a","source_type":"dokumen uji"}
+  ],
+  "records": [
+    {"record_id":"S-01","jenis_data":"dokumentasi kasus","indikator":"Keluhan layanan daring fiktif","definisi_operasional":"Laporan keluhan pada dokumen simulasi","organisasi_penerbit":"SyntheticLab","judul_sumber":"Laporan fiktif A","url":"https://example.org/a","tanggal_peristiwa":"2025-06-10","tanggal_publikasi":"2025-07-01","geografi":"Depok","unit_analisis":"peristiwa","cuplikan":"Keterangan hasil observasi simulasi"},
+    {"record_id":"S-02","jenis_data":"statistik resmi","indikator":"Proporsi pengguna platform fiktif","definisi_operasional":"Jumlah pengguna dibagi populasi yang didefinisikan pada laporan simulasi","nilai":35.5,"satuan":"%","penyebut":null,"organisasi_penerbit":"Synthetic Statistics","judul_sumber":"Statistik fiktif","url":"https://example.org/stat","periode_referensi":"2025","geografi":"Indonesia","populasi":"penduduk Indonesia"},
+    {"record_id":"S-03","jenis_data":"survei","indikator":"Opini tentang platform fiktif","definisi_operasional":"Jawaban responden pada formulir sukarela","nilai":64,"satuan":"%","sampel":"200 peserta sukarela","metode_sampling":"nonprobabilitas sukarela","representativitas":"nasional representatif","populasi":"warga Indonesia","organisasi_penerbit":"SyntheticLab","judul_sumber":"Survei fiktif","url":"https://example.org/survey","periode_referensi":"2025"},
+    {"record_id":"S-04","jenis_data":"proksi digital","indikator":"Minat pencarian fiktif","definisi_operasional":"Indeks penelusuran terstandardisasi 0-100","nilai":77,"satuan":"jumlah pencarian","organisasi_penerbit":"Google Trends","judul_sumber":"Google Trends simulasi","url":"https://example.org/trends","periode_referensi":"2026"},
+    {"record_id":"S-05","jenis_data":"dokumentasi kasus","indikator":"Coverage fiktif","definisi_operasional":"Jumlah berita yang berhasil diarsipkan sistem simulasi","nilai":12,"satuan":"artikel","organisasi_penerbit":"GDELT","judul_sumber":"GDELT simulasi","url":"https://example.org/news","periode_referensi":"2025"},
+    {"record_id":"S-06","jenis_data":"statistik resmi","indikator":"Proporsi pengguna platform fiktif","definisi_operasional":"Akun aktif dibagi seluruh pengguna terdaftar","nilai":40,"satuan":"%","populasi":"pengguna aplikasi","organisasi_penerbit":"Synthetic Statistics","judul_sumber":"Statistik fiktif berikutnya","url":"https://example.org/stat2","periode_referensi":"2026"}
+  ]
+}

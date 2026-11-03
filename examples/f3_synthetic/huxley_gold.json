@@ -1,0 +1,6 @@
+{
+  "description": "Ground truth manual untuk naskah SINTETIS dalam folder ini; bukan hasil dari corpus akademik nyata",
+  "citation_statuses_in_order": ["MATCHED", "MATCHED", "MATCHED", "UNMATCHED_CITATION", "AMBIGUOUS", "MATCHED"],
+  "reference_statuses_in_order": ["MATCHED", "MATCHED", "MANUAL_REVIEW", "MATCHED", "UNCITED_REFERENCE"],
+  "expected_highlighted": ["C004", "C005"]
+}

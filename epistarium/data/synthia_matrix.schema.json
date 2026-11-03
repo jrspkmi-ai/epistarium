@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Synthia matrix output alpha",
+  "type": "object",
+  "required": [
+    "columns",
+    "records",
+    "evidence_level"
+  ],
+  "properties": {
+    "columns": {
+      "type": "array",
+      "minItems": 20,
+      "maxItems": 20
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "evidence_level": {
+      "const": "draft_requires_human_review"
+    }
+  }
+}

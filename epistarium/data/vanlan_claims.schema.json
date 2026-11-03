@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Vanlan Claims V0.1.1",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "text",
+      "jenis"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "text": {
+        "type": "string",
+        "minLength": 1
+      },
+      "jenis": {
+        "enum": [
+          "kutipan_langsung",
+          "parafrasa"
+        ]
+      },
+      "source_pdf": {
+        "type": "string",
+        "description": "Nama PDF relatif di dalam folder sumber, boleh kosong jika source_doi tersedia"
+      },
+      "kutipan_asli": {
+        "type": "string"
+      },
+      "evidence_anchor": {
+        "type": "string"
+      },
+      "source_doi": {
+        "type": "string",
+        "description": "DOI opsional untuk verifikasi PDF atau pemetaan otomatis unik jika source_pdf kosong"
+      },
+      "evidence_anchors": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 12
+        },
+        "description": "Daftar frasa literal yang harus benar-benar ditemukan sebelum anotasi"
+      }
+    },
+    "additionalProperties": true
+  }
+}

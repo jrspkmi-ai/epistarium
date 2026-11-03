@@ -1,0 +1,9 @@
+include README.md README.id.md AGENTS.md CHANGELOG.md CHANGELOG.id.md
+recursive-include .agents/skills *.md
+recursive-include docs *.md *.json
+recursive-include schemas *.json
+recursive-include examples *.json *.txt *.md *.csv *.pdf *.docx *.py
+recursive-include reports *.txt *.md *.json *.csv
+recursive-include scripts *.py
+recursive-include tests *.py
+recursive-include third_party *

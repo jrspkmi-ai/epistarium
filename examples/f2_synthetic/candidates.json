@@ -1,0 +1,76 @@
+{
+  "records": [
+    {
+      "article_id": "demo-full",
+      "doi": "10.1234/epistarium.test.full",
+      "title": "Synthetic Fulltext Study",
+      "authors": "Synthetic Author",
+      "year": 2026,
+      "article_type": "journal-article",
+      "available_level": "metadata",
+      "abstract": null,
+      "source_database": "synthetic_fixture",
+      "query_url": "https://example.invalid/no-real-article"
+    },
+    {
+      "article_id": "demo-abstract",
+      "doi": "10.1234/epistarium.test.abstract",
+      "title": "Synthetic Abstract-only Study",
+      "authors": "Synthetic Author",
+      "year": 2026,
+      "article_type": "journal-article",
+      "available_level": "metadata+abstract_metadata",
+      "abstract": "This is only an abstract. No methods/results may be extracted.",
+      "source_database": "synthetic_fixture",
+      "query_url": "https://example.invalid/no-real-article"
+    },
+    {
+      "article_id": "demo-metadata",
+      "doi": "10.1234/epistarium.test.metadata",
+      "title": "Synthetic Metadata-only Study",
+      "authors": "Synthetic Author",
+      "year": 2026,
+      "article_type": "journal-article",
+      "available_level": "metadata",
+      "abstract": null,
+      "source_database": "synthetic_fixture",
+      "query_url": "https://example.invalid/no-real-article"
+    },
+    {
+      "article_id": "demo-conflict",
+      "doi": "10.1234/epistarium.test.conflict",
+      "title": "Synthetic Conflict Study",
+      "authors": "Synthetic Author",
+      "year": 2026,
+      "article_type": "journal-article",
+      "available_level": "metadata",
+      "abstract": null,
+      "source_database": "synthetic_fixture",
+      "query_url": "https://example.invalid/no-real-article"
+    },
+    {
+      "article_id": "demo-missing",
+      "doi": "10.1234/epistarium.test.missing",
+      "title": "Synthetic Missing File Study",
+      "authors": "Synthetic Author",
+      "year": 2026,
+      "article_type": "journal-article",
+      "available_level": "metadata",
+      "abstract": null,
+      "source_database": "synthetic_fixture",
+      "query_url": "https://example.invalid/no-real-article"
+    },
+    {
+      "article_id": "demo-scan",
+      "doi": "10.1234/epistarium.test.scan",
+      "title": "Synthetic Scan Study",
+      "authors": "Synthetic Author",
+      "year": 2026,
+      "article_type": "journal-article",
+      "available_level": "metadata",
+      "abstract": null,
+      "source_database": "synthetic_fixture",
+      "query_url": "https://example.invalid/no-real-article"
+    }
+  ]
+}

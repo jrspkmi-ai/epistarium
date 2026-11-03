@@ -1,0 +1,350 @@
+{
+  "version": "0.7.1",
+  "pairs": [
+    {
+      "en": "README.md",
+      "id": "README.id.md",
+      "sections": [
+        "identity",
+        "quickstart",
+        "installation",
+        "catalog",
+        "modes",
+        "integrity",
+        "maintenance"
+      ]
+    },
+    {
+      "en": "docs/en/PERSONA_TUTORIALS.md",
+      "id": "docs/id/PERSONA_TUTORIALS.md",
+      "sections": [
+        "start",
+        "jorhas-master-diving",
+        "ideon-topic-brainstormer",
+        "liora-literature-scout",
+        "agresa-index-verifier",
+        "retho-fulltext-retriever",
+        "domares-critical-reader",
+        "synthia-literature-review",
+        "vanlan-powerlink-verify",
+        "quilo-academic-writer",
+        "huxley-citation-auditor"
+      ]
+    },
+    {
+      "en": "docs/en/install/windows.md",
+      "id": "docs/id/install/windows.md",
+      "sections": [
+        "identity",
+        "python",
+        "download",
+        "install",
+        "example",
+        "update",
+        "troubleshooting"
+      ]
+    },
+    {
+      "en": "docs/en/install/macos.md",
+      "id": "docs/id/install/macos.md",
+      "sections": [
+        "identity",
+        "python",
+        "download",
+        "install",
+        "example",
+        "update",
+        "troubleshooting"
+      ]
+    },
+    {
+      "en": "docs/en/install/linux.md",
+      "id": "docs/id/install/linux.md",
+      "sections": [
+        "identity",
+        "python",
+        "download",
+        "install",
+        "example",
+        "update",
+        "troubleshooting"
+      ]
+    },
+    {
+      "en": "docs/en/FIRST_RESEARCH.md",
+      "id": "docs/id/FIRST_RESEARCH.md",
+      "sections": [
+        "purpose",
+        "ask",
+        "run",
+        "read",
+        "next"
+      ]
+    },
+    {
+      "en": "docs/en/platforms/opencode.md",
+      "id": "docs/id/platforms/opencode.md",
+      "sections": [
+        "scope",
+        "setup",
+        "activate",
+        "runtime",
+        "permissions",
+        "verify",
+        "limits"
+      ]
+    },
+    {
+      "en": "docs/en/platforms/antigravity.md",
+      "id": "docs/id/platforms/antigravity.md",
+      "sections": [
+        "scope",
+        "setup",
+        "activate",
+        "runtime",
+        "permissions",
+        "verify",
+        "limits"
+      ]
+    },
+    {
+      "en": "docs/en/platforms/codex.md",
+      "id": "docs/id/platforms/codex.md",
+      "sections": [
+        "scope",
+        "setup",
+        "activate",
+        "runtime",
+        "permissions",
+        "verify",
+        "limits"
+      ]
+    },
+    {
+      "en": "docs/en/platforms/chatgpt.md",
+      "id": "docs/id/platforms/chatgpt.md",
+      "sections": [
+        "scope",
+        "setup",
+        "activate",
+        "runtime",
+        "permissions",
+        "verify",
+        "limits"
+      ]
+    },
+    {
+      "en": "docs/en/platforms/claude.md",
+      "id": "docs/id/platforms/claude.md",
+      "sections": [
+        "scope",
+        "setup",
+        "activate",
+        "runtime",
+        "permissions",
+        "verify",
+        "limits"
+      ]
+    },
+    {
+      "en": "docs/en/platforms/gemini.md",
+      "id": "docs/id/platforms/gemini.md",
+      "sections": [
+        "scope",
+        "setup",
+        "activate",
+        "runtime",
+        "permissions",
+        "verify",
+        "limits"
+      ]
+    },
+    {
+      "en": "docs/en/platforms/copilot.md",
+      "id": "docs/id/platforms/copilot.md",
+      "sections": [
+        "scope",
+        "setup",
+        "activate",
+        "runtime",
+        "permissions",
+        "verify",
+        "limits"
+      ]
+    },
+    {
+      "en": "docs/en/platforms/cursor.md",
+      "id": "docs/id/platforms/cursor.md",
+      "sections": [
+        "scope",
+        "setup",
+        "activate",
+        "runtime",
+        "permissions",
+        "verify",
+        "limits"
+      ]
+    },
+    {
+      "en": "docs/en/platforms/windsurf.md",
+      "id": "docs/id/platforms/windsurf.md",
+      "sections": [
+        "scope",
+        "setup",
+        "activate",
+        "runtime",
+        "permissions",
+        "verify",
+        "limits"
+      ]
+    },
+    {
+      "en": "docs/en/platforms/amp.md",
+      "id": "docs/id/platforms/amp.md",
+      "sections": [
+        "scope",
+        "setup",
+        "activate",
+        "runtime",
+        "permissions",
+        "verify",
+        "limits"
+      ]
+    },
+    {
+      "en": "docs/en/LICENSING.md",
+      "id": "docs/id/LICENSING.md",
+      "sections": [
+        "scope",
+        "pdf",
+        "routes",
+        "thirdparty"
+      ]
+    },
+    {
+      "en": "docs/en/RIGHTS_AND_DEPENDENCIES.md",
+      "id": "docs/RIGHTS_AND_DEPENDENCIES.md",
+      "sections": [
+        "current"
+      ]
+    },
+    {
+      "en": "CONTRIBUTING.md",
+      "id": "CONTRIBUTING.id.md",
+      "sections": [
+        "scope",
+        "change",
+        "checks",
+        "report"
+      ]
+    },
+    {
+      "en": "SECURITY.md",
+      "id": "SECURITY.id.md",
+      "sections": [
+        "policy",
+        "data"
+      ]
+    },
+    {
+      "en": "docs/en/releases/v0.7.1.md",
+      "id": "docs/id/releases/v0.7.1.md",
+      "sections": [
+        "identity",
+        "changes",
+        "dependencies",
+        "install",
+        "evidence",
+        "approval"
+      ]
+    },
+    {
+      "en": "docs/en/migrations/0.6_to_0.7.md",
+      "id": "docs/id/migrations/0.6_to_0.7.md",
+      "sections": [
+        "scope",
+        "steps",
+        "contracts"
+      ]
+    },
+    {
+      "en": "docs/en/INDEX.md",
+      "id": "docs/id/INDEX.md",
+      "sections": [
+        "start",
+        "platforms",
+        "rules"
+      ]
+    },
+    {
+      "en": "THIRD_PARTY_NOTICES.md",
+      "id": "THIRD_PARTY_NOTICES.id.md",
+      "sections": [
+        "scope",
+        "simpleenglish",
+        "pdf",
+        "inventory",
+        "material"
+      ]
+    },
+    {
+      "en": "reports/v0.7.0/LICENSING_AUDIT.md",
+      "id": "reports/v0.7.0/LICENSING_AUDIT.id.md",
+      "sections": [
+        "decision",
+        "evidence",
+        "pdf",
+        "sources"
+      ]
+    },
+    {
+      "en": "reports/v0.7.0/COMPATIBILITY_MATRIX.md",
+      "id": "reports/v0.7.0/COMPATIBILITY_MATRIX.id.md",
+      "sections": [
+        "scope",
+        "os",
+        "boundaries"
+      ]
+    },
+    {
+      "en": "reports/v0.7.0/SOURCE_RESEARCH.md",
+      "id": "reports/v0.7.0/SOURCE_RESEARCH.id.md",
+      "sections": [
+        "scope",
+        "os",
+        "design"
+      ]
+    },
+    {
+      "en": "reports/v0.7.0/SECURITY_AUDIT.md",
+      "id": "reports/v0.7.0/SECURITY_AUDIT.id.md",
+      "sections": [
+        "scope",
+        "controls",
+        "advisories",
+        "limits"
+      ]
+    },
+    {
+      "en": "reports/v0.7.0/TEST_RESULTS.md",
+      "id": "reports/v0.7.0/TEST_RESULTS.id.md",
+      "sections": [
+        "environment",
+        "counts",
+        "execution",
+        "findings"
+      ]
+    },
+    {
+      "en": "reports/v0.7.0/RELEASE_READINESS.md",
+      "id": "reports/v0.7.0/RELEASE_READINESS.id.md",
+      "sections": [
+        "decision",
+        "evidence",
+        "open",
+        "approval"
+      ]
+    }
+  ],
+  "scope": "Section and link parity. Human semantic review remains required."
+}

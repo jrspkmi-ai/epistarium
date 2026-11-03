@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EPISTARIUM ORIGO Ideon Research Formation Case v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["ide_awal"],
+  "properties": {
+    "ide_awal": {"type":"string","minLength":3},
+    "bidang_ilmu": {"type":"string"},
+    "jenjang": {"type":"string"},
+    "fenomena": {"type":"string"},
+    "fokus": {"type":"string"},
+    "teori_pilihan": {"type":"string"},
+    "paradigma": {"type":"string"},
+    "metode_pilihan": {"type":"string"},
+    "unit_analisis": {"type":"string"},
+    "akses_data": {"type":"object","additionalProperties":{"type":"string"}},
+    "literatur_terverifikasi": {"type":"array","items":{"type":"object"}},
+    "perubahan_pembimbing": {"type":"string"},
+    "mode": {"enum":["QUICK_MAP","ELABORATE_21","BLUEPRINT","REVISION"],"default":"QUICK_MAP"},
+    "judul_count": {"type":"integer","minimum":1,"maximum":7,"default":3},
+    "revision_id": {"type":"string"},
+    "catatan_pengguna": {"type":"string"}
+  }
+}
