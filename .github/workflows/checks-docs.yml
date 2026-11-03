@@ -1,0 +1,28 @@
+name: EPISTARIUM documentation checks
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'README.md'
+      - 'README.id.md'
+      - 'docs/**'
+      - 'assets/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONUTF8: "1"
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e "[test]"
+      - run: python scripts/check_docs.py
+      - run: python scripts/check_english.py
