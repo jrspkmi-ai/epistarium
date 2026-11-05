@@ -30,7 +30,7 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python }}
-      - run: python -m pip install -e "[test]"
+      - run: python -m pip install -e ".[test]"
       - run: python -m pip check
       - run: python -m epistarium doctor --lang en
       - run: python -m epistarium doctor --lang id
@@ -60,7 +60,7 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python }}
-      - run: python -m pip install -e "[test]"
+      - run: python -m pip install -e ".[test]"
       - run: python -m pip check
       - run: python -m epistarium doctor --lang en
       - run: python -m epistarium doctor --lang id
