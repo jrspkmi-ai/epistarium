@@ -10,7 +10,7 @@ readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md", "third_party/SimpleEnglish/LICENSE"]
 keywords = ["research", "agent-skills", "bilingual", "evidence"]
-classifiers = ["Development Status :: 4 - Beta", "Programming Language :: Python :: 3", "Intended Audience :: Science/Research"]
+classifiers = ["Development Status :: 3 - Alpha", "Programming Language :: Python :: 3", "Intended Audience :: Science/Research"]
 requires-python = ">=3.11"
 dependencies = ["pypdfium2>=5.14,<6", "pypdf>=6.21,<7", "requests>=2.31", "python-docx>=1.1", "openpyxl>=3.1", "jsonschema>=4.21", "defusedxml>=0.7.1", "tzdata>=2024.1; sys_platform == 'win32'"]
 
@@ -28,6 +28,7 @@ testpaths = ["tests"]
 
 [tool.setuptools.package-data]
 epistarium = ["data/*.json"]
+"epistarium.observatory" = ["static/*.html", "static/*.css", "static/*.js"]
 
 [tool.setuptools.dynamic]
 version = {attr = "epistarium._version.__version__"}

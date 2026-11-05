@@ -46,7 +46,8 @@ def run(output, lang):
                 'domares/critical_readings.json','synthia/database_literatur.xlsx','vanlan/contoh_sintetis_annotated.pdf',
                 'full/FULL_RESEARCH_MANIFEST.json']
     missing = [p for p in required if not (base / p).is_file()]
-    return {'version':'0.7.1','language':lang,'python':platform.python_version(),'platform':platform.platform(),
+    from epistarium import __version__
+    return {'version':__version__,'language':lang,'python':platform.python_version(),'platform':platform.platform(),
             'synthetic':True,'native_activation':'NOT_RUN', 'commands':commands, 'artifacts':artifacts,
             'required_artifact_count':len(required),'missing_required':missing,
             'status':'FAIL' if missing or failures or any(c['status']=='FAIL' for c in commands) else 'PASS'}

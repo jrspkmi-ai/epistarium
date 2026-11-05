@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.8.0 Research Observatory (Release Candidate, 2026-11-04)
+
+- Added local SSE monitoring for actual Jorhas execution checkpoints and ten specialist persona statuses.
+- Added four-column dashboard inspired by the approved concept, with original role icons (no external artwork dependencies).
+- Added EN/ID language control (EN default), dark/light themes, evidence record counts, previews, and event feed.
+- Added blocking approvals for requested online access and local artifact release authorization.
+- Kept execution status separate from evidence verification. Approval never promotes scholarly claims.
+- Added loopback-only HTTP API, session token, Host/Origin checks, bounded text preview, and traversal checks.
+- Added unit, HTTP/SSE integration, JSON schema, and offline Chromium rendering tests.
+- Pending verification: native browser launch across OS, live browser-to-server UI under unrestricted desktop networking, and GitHub Actions CI for this commit.
+
+
 ## 0.7.0 RELEASE_CANDIDATE
 
 Domares printed-page provenance, ORIGO footer layout, clean doctor JSON, XML entity handling, and explicit source-rights defaults are corrected.

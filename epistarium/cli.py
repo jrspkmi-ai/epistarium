@@ -15,6 +15,8 @@ def run(argv=None):
     p.add_argument("--version",action="version",version=__version__)
     p.add_argument("--lang",choices=("id","en","auto"),help=tr("Bahasa keluaran: id, en, atau auto"))
     s = p.add_subparsers(dest="command", required=True)
+    observatory=s.add_parser("observatory",help="Launch the local Research Observatory (use --help after observatory)")
+    observatory.add_argument("observatory_args",nargs=argparse.REMAINDER)
     doctor=s.add_parser("doctor",help=tr('Periksa dependensi, zona waktu, akses tulis dan lokasi skill tanpa jaringan'))
     doctor.add_argument("--out",help=tr('Opsional path JSON laporan lingkungan'))
     extract = s.add_parser("vanlan-extract", help=tr('Ekstraksi kandidat klaim dari file teks'))
@@ -97,6 +99,9 @@ def run(argv=None):
         subparser.add_argument('--lang',choices=('id','en','auto'),default=argparse.SUPPRESS,
                                help=tr('Bahasa keluaran: id, en, atau auto'))
     args = p.parse_args(argv)
+    if args.command=='observatory':
+        from .observatory.__main__ import main as observatory_main
+        return observatory_main(args.observatory_args)
     if args.command=='doctor':
         from .doctor import diagnose
         result=diagnose()
@@ -198,6 +203,9 @@ def _selected_language(argv):
 
 def main(argv=None):
     args=list(sys.argv[1:] if argv is None else argv)
+    if args and args[0]=='observatory':
+        from .observatory.__main__ import main as observatory_main
+        return observatory_main(args[1:])
     try:
         language=_selected_language(args)
     except ValueError as exc:

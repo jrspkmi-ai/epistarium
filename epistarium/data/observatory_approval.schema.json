@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jrspkmi-ai/epistarium/schemas/observatory_approval.schema.json",
+  "title": "EPISTARIUM Human Decision v1",
+  "type": "object",
+  "required": ["decision", "gate", "reviewer", "reason", "time", "evidence_status_unchanged"],
+  "properties": {
+    "decision": {"enum": ["approve", "reject", "request_changes"]},
+    "gate": {"enum": ["ONLINE_ACCESS", "FINAL_ARTIFACT"]},
+    "reviewer": {"type": "string"},
+    "reason": {"type": "string", "maxLength": 1000},
+    "time": {"type": "string", "format": "date-time"},
+    "evidence_status_unchanged": {"type": "string"},
+    "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": true
+}

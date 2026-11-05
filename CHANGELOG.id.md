@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.8.0 Research Observatory (Kandidat Rilis, 4 November 2026)
+
+- Menambahkan pemantauan SSE lokal atas checkpoint eksekusi Python Jorhas dan status sepuluh persona.
+- Menambahkan dashboard empat kolom sesuai rancangan terpilih dengan ikon persona orisinal.
+- Menambahkan EN/ID (bawaan EN), mode gelap/terang, jumlah rekaman bukti, pratinjau, dan linimasa aktivitas.
+- Menambahkan persetujuan yang menghentikan akses jaringan hingga diberi izin dan mengatur otorisasi paket artefak lokal.
+- Memisahkan status eksekusi dari status verifikasi; persetujuan tidak mengubah bukti ilmiah menjadi terverifikasi.
+- Menambahkan HTTP lokal, token sesi, pemeriksaan Host/Origin, pembatasan pratinjau teks, serta perlindungan traversal.
+- Menambahkan tes unit, HTTP/SSE, skema JSON, dan rendering Chromium offline.
+- Menunggu verifikasi: pembukaan browser pada setiap OS, browser-ke-server langsung di lingkungan desktop tanpa pembatasan, dan GitHub Actions pada commit baru.
+
+
 ## 0.7.0 RELEASE_CANDIDATE
 
 Provenance halaman cetak Domares, tata letak footer ORIGO, JSON doctor, penanganan entitas XML, dan hak sumber bawaan diperbaiki.

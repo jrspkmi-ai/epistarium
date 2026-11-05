@@ -11,7 +11,7 @@ Explore. Analyze. Verify.
 
 Modular AI Research Skills
 
-v0.7.1 RELEASE_CANDIDATE. Sepuluh persona penelitian, English dan Bahasa Indonesia, satu basis kode.
+v0.8.0 RELEASE_CANDIDATE. Sepuluh persona penelitian, English dan Bahasa Indonesia, satu basis kode.
 
 MIT mencakup karya orisinal EPISTARIUM. Runtime memakai pypdfium2 dan pypdf. Gerbang rilis: GO_BERSYARAT.
 Baca [lisensi](docs/id/LICENSING.md) dan [kesiapan rilis](reports/v0.7.1/RELEASE_READINESS.id.md).
@@ -48,6 +48,16 @@ Gunakan folder keluaran baru untuk setiap eksekusi. Pilih --lang en, --lang id, 
 Bahasa tidak mengubah kutipan sumber, DOI, nama, angka, atau kode status kanonis.
 
 Ikuti [Penelitian Pertama](docs/id/FIRST_RESEARCH.md) untuk membaca keluaran dan menjalankan alur sumber hingga telaah secara aman.
+
+## Research Observatory langsung (v0.8.0)
+
+Pantau langkah Python Jorhas yang benar-benar berjalan, status sepuluh persona, jumlah rekaman bukti, artefak, dan gerbang persetujuan melalui antarmuka lokal dwi-bahasa (bawaan EN, dapat memilih ID) dengan mode gelap dan terang. Eksekusi selesai **tidak berarti** pembuktian semantik selesai.
+
+```bash
+python -m epistarium observatory --open
+```
+
+Untuk menjalankan Path Finding lokal, tambahkan `--idea "Topik penelitian" --mode pathfind`. Pembukaan browser otomatis memerlukan lingkungan desktop dan izin sistem. Lihat [panduan Observatory Bahasa Indonesia](docs/id/observatory/README.md) atau [English guide](docs/en/observatory/README.md). Dashboard ini bukan plugin ChatGPT web.
 
 <!-- section: installation -->
 ## Pasang sesuai lingkungan

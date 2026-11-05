@@ -156,6 +156,7 @@ def test_fresh_process_doctor_stdout_is_clean_json(lang):
     process=subprocess.run([sys.executable,'-I','-m','epistarium','doctor','--lang',lang],cwd=ROOT,capture_output=True,text=True)
     assert process.returncode==0,process.stderr
     result=json.loads(process.stdout)
-    assert result['version']=='0.7.1' and result['language']==lang
+    from epistarium import __version__
+    assert result['version']==__version__ and result['language']==lang
     assert result['checks']['pypdfium2']['ok'] is True
     assert result['checks']['pypdf']['ok'] is True

@@ -1,5 +1,5 @@
 {
-  "version": "0.7.1",
+  "version": "0.8.0",
   "pairs": [
     {
       "en": "README.md",
@@ -343,6 +343,17 @@
         "evidence",
         "open",
         "approval"
+      ]
+    },
+    {
+      "en": "docs/en/observatory/README.md",
+      "id": "docs/id/observatory/README.md",
+      "sections": [
+        "start",
+        "monitoring",
+        "approval",
+        "security",
+        "limits"
       ]
     }
   ],

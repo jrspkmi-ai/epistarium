@@ -1,4 +1,4 @@
-name: EPISTARIUM candidate checks
+name: EPISTARIUM v0.8.0 candidate checks
 on:
   push:
     branches: [main]
@@ -37,11 +37,13 @@ jobs:
       - run: python scripts/verify_skills.py
       - run: python scripts/check_docs.py
       - run: python scripts/check_english.py
+      - run: python -m epistarium observatory --help
+      - run: node --check epistarium/observatory/static/app.js
       - run: python -m pytest -q
       - run: python -m build --no-isolation
       - run: python scripts/smoke_tutorial.py --out private/ci-tutorial-en --lang en --report private/ci-tutorial-en.json
       - run: python scripts/smoke_tutorial.py --out private/ci-tutorial-id --lang id --report private/ci-tutorial-id.json
-      - run: python scripts/package_release.py --out ../EPISTARIUM_v0.7.1_RELEASE_CANDIDATE.zip
+      - run: python scripts/package_release.py --out ../EPISTARIUM_v0.8.0_RELEASE_CANDIDATE.zip
 
   test_release:
     if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
@@ -65,8 +67,10 @@ jobs:
       - run: python scripts/verify_skills.py
       - run: python scripts/check_docs.py
       - run: python scripts/check_english.py
+      - run: python -m epistarium observatory --help
+      - run: node --check epistarium/observatory/static/app.js
       - run: python -m pytest -q
       - run: python -m build --no-isolation
       - run: python scripts/smoke_tutorial.py --out private/ci-tutorial-en --lang en --report private/ci-tutorial-en.json
       - run: python scripts/smoke_tutorial.py --out private/ci-tutorial-id --lang id --report private/ci-tutorial-id.json
-      - run: python scripts/package_release.py --out ../EPISTARIUM_v0.7.1_RELEASE_CANDIDATE.zip
+      - run: python scripts/package_release.py --out ../EPISTARIUM_v0.8.0_RELEASE_CANDIDATE.zip

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jrspkmi-ai/epistarium/schemas/observatory_event.schema.json",
+  "title": "EPISTARIUM Observatory Event v1",
+  "type": "object",
+  "required": ["schema", "event_id", "run_id", "time", "kind"],
+  "properties": {
+    "schema": {"const": "epistarium.observatory.event.v1"},
+    "event_id": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+    "run_id": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+    "time": {"type": "string", "format": "date-time"},
+    "kind": {"type": "string", "minLength": 1},
+    "persona": {"enum": ["Jorhas", "Ideon", "Liora", "Agresa", "Retho", "Domares", "Synthia", "Vanlan", "Quilo", "Huxley"]},
+    "status": {"enum": ["NOT_RUN", "QUEUED", "RUNNING", "SUCCESS", "PARTIAL", "BLOCKED", "FAILED", "RELEASE_AUTHORIZED", "AWAITING_APPROVAL", "REJECTED", "NEEDS_CHANGES"]},
+    "message": {"type": "string", "maxLength": 1000}
+  },
+  "additionalProperties": true
+}

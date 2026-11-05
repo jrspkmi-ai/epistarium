@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>EPISTARIUM | Research Observatory</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="24" rx="20" ry="8" transform="rotate(-30 24 24)" stroke="currentColor" stroke-width="2.5"/><circle cx="24" cy="24" r="7" fill="currentColor" opacity=".5"/></svg></div>
+    <nav aria-label="Primary">
+      <button class="nav-item active" id="nav-overview" data-i18n="overview">Overview</button>
+      <button class="nav-item" id="nav-artifacts" data-i18n="artifacts">Artifacts</button>
+      <button class="nav-item" id="nav-history" data-i18n="history">Run history</button>
+    </nav>
+    <div class="sidebar-foot">EPISTARIUM <small>RESEARCH SYSTEM</small></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar">
+      <div class="heading"><p class="eyebrow">EPISTARIUM</p><h1>Research Observatory</h1><p class="subtitle" data-i18n="subtitle">Live research monitoring · evidence-aware workflow</p></div>
+      <div class="top-actions">
+        <span class="live-indicator"><i></i><span id="connection-text" data-i18n="connecting">Connecting</span></span>
+        <div class="segmented" role="group" aria-label="Language"><button id="lang-en" class="selected" aria-pressed="true">EN</button><button id="lang-id" aria-pressed="false">ID</button></div>
+        <button id="theme-toggle" class="round-button" aria-label="Toggle light and dark theme" title="Toggle light/dark theme">☀</button>
+        <button id="new-run" class="primary" data-i18n="newRun">+ New run</button>
+      </div>
+    </header>
+    <main>
+      <section class="run-strip"><div><span class="label" data-i18n="currentRun">Current run</span><strong id="run-title" class="run-name">No research run selected</strong><span id="run-meta" class="muted small"></span></div><div class="run-controls"><label for="run-select" class="sr-only">Select research run</label><select id="run-select" aria-label="Select research run"></select><span class="status-pill" id="run-status">IDLE</span></div></section>
+      <section class="metrics" aria-label="Run counters">
+        <article class="metric accent-cyan"><div class="metric-symbol">▱</div><div><span data-i18n="sourcesChecked">Source records</span><strong id="sources-count">—</strong></div></article>
+        <article class="metric accent-purple"><div class="metric-symbol">▤</div><div><span data-i18n="evidenceRecords">Data records</span><strong id="evidence-count">—</strong></div></article>
+        <article class="metric accent-blue"><div class="metric-symbol">◉</div><div><span data-i18n="activePersona">Active persona</span><strong id="active-stage">—</strong></div></article>
+        <article class="metric accent-gold"><div class="metric-symbol">◇</div><div><span data-i18n="pendingApprovals">Approval needed</span><strong id="approvals-count">0</strong></div></article>
+      </section>
+      <section class="observatory-layout">
+        <div class="board-wrap">
+          <div class="section-title"><h2 data-i18n="personaBoard">Persona activity</h2><span class="small muted" data-i18n="honesty">Actual Python steps only · NOT_RUN is not queued work</span></div>
+          <div class="board" id="persona-board">
+            <div class="board-column queued"><div class="column-header"><span data-i18n="queued">Not run / queued</span><b id="count-queued">0</b></div><div id="cards-queued" class="card-list"></div></div>
+            <div class="board-column running"><div class="column-header"><span data-i18n="running">Running</span><b id="count-running">0</b></div><div id="cards-running" class="card-list"></div></div>
+            <div class="board-column review"><div class="column-header"><span data-i18n="needsReview">Needs review</span><b id="count-review">0</b></div><div id="cards-review" class="card-list"></div></div>
+            <div class="board-column completed"><div class="column-header"><span data-i18n="completed">Completed steps</span><b id="count-completed">0</b></div><div id="cards-completed" class="card-list"></div></div>
+          </div>
+        </div>
+        <aside class="details">
+          <section class="panel preview"><div class="panel-head"><h2 data-i18n="artifactPreview">Artifact preview</h2><span id="artifact-count" class="muted small">0</span></div><div id="artifact-list" class="artifact-list"></div><pre id="artifact-preview" class="artifact-content" data-i18n="chooseArtifact">Select a text artifact to preview.</pre></section>
+          <section class="panel event-panel"><div class="panel-head"><h2 data-i18n="recentEvents">Recent events</h2><span class="online-dot" aria-hidden="true"></span></div><div id="events-feed" class="event-feed" aria-live="polite"></div></section>
+          <section class="panel decision-panel"><div class="panel-head"><h2 data-i18n="approvalGate">Approval gate</h2></div><p id="gate-message" class="small muted" data-i18n="noApproval">No approval required.</p><div id="gate-buttons" class="gate-actions" hidden><button class="primary" data-decision="approve" data-i18n="approve">Approve</button><button class="secondary" data-decision="request_changes" data-i18n="requestChanges">Request changes</button><button class="danger" data-decision="reject" data-i18n="reject">Reject</button></div><small class="muted" data-i18n="gateNote">Approval authorizes a step. It does not verify scholarly claims.</small></section>
+        </aside>
+      </section>
+      <section class="warnings" aria-label="Limits"><strong>⚠ <span data-i18n="constraints">Warnings & constraints</span></strong><span id="constraint-text" data-i18n="defaultWarning">No workflow active. Source records are not automatically verified.</span></section>
+      <footer>Explore. Analyze. Verify. <span data-i18n="localOnly">Local only · no cloud dashboard · original MIT code</span></footer>
+    </main>
+  </div>
+</div>
+<dialog id="run-dialog"><form method="dialog" id="run-form"><h2 data-i18n="startResearch">Start research</h2><label for="new-idea" data-i18n="ideaLabel">Research idea</label><textarea id="new-idea" rows="3" maxlength="1000" minlength="3" required></textarea><label for="new-mode" data-i18n="mode">Mode</label><select id="new-mode"><option value="pathfind">Path Finding</option><option value="full">Full Research</option></select><p class="muted small" data-i18n="runDisclaimer">Full Research needs user-supplied materials. An idea alone will not produce verified findings.</p><div class="modal-buttons"><button value="cancel" class="secondary" data-i18n="cancel">Cancel</button><button id="create-run" value="submit" class="primary" data-i18n="start">Start</button></div></form></dialog>
+<dialog id="approval-dialog"><form method="dialog" id="approval-form"><h2 data-i18n="humanDecision">Human decision</h2><p class="muted" data-i18n="decisionNote">Decisions are recorded with timestamps and artifact hashes when available.</p><label for="decision-reason" data-i18n="reason">Reason / review note</label><textarea id="decision-reason" rows="4" maxlength="1000" placeholder="Optional for approval"></textarea><div class="modal-buttons"><button value="cancel" class="secondary" data-i18n="cancel">Cancel</button><button id="confirm-decision" class="primary" value="submit" data-i18n="recordDecision">Record decision</button></div></form></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -11,7 +11,7 @@ Explore. Analyze. Verify.
 
 Modular AI Research Skills
 
-v0.7.1 RELEASE_CANDIDATE. Ten research personas, English and Bahasa Indonesia, one codebase.
+v0.8.0 RELEASE_CANDIDATE. Ten research personas, English and Bahasa Indonesia, one codebase.
 
 MIT covers original EPISTARIUM work. The runtime uses pypdfium2 and pypdf. Release gate: GO_BERSYARAT.
 Read [licensing](docs/en/LICENSING.md) and [release readiness](reports/v0.7.1/RELEASE_READINESS.md).
@@ -48,6 +48,16 @@ Use a new output folder for every run. Select --lang en, --lang id, or --lang au
 Language never changes source quotations, DOI values, names, numbers, or canonical status codes.
 
 Follow [First Research](docs/en/FIRST_RESEARCH.md) to inspect the output and run a safe source-to-review workflow.
+
+## Live Research Observatory (v0.8.0)
+
+Monitor actual Jorhas Python steps, persona states, record counts, artifacts, and approval gates in a bilingual local interface. Choose dark/light or EN/ID. An executed step is **not** semantic verification.
+
+```bash
+python -m epistarium observatory --open
+```
+
+For a real local Path Finding run, add `--idea "Your research topic" --mode pathfind`. An automatically opened browser requires a desktop environment and browser-launch permission. See [Observatory documentation](docs/en/observatory/README.md) and [panduan Indonesia](docs/id/observatory/README.md). The dashboard is not a ChatGPT web plugin.
 
 <!-- section: installation -->
 ## Install for your environment

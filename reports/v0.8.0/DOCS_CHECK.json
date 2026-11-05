@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "version": "0.8.0",
+  "document_count": 102,
+  "paired_document_count": 31,
+  "paired_section_count": 169,
+  "local_link_count": 565,
+  "persona_count": 10,
+  "platform_count": 10,
+  "issues": [],
+  "scope": "Local links and declared section parity. Semantic equivalence and native activation require separate review."
+}

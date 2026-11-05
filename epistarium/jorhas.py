@@ -31,7 +31,10 @@ def _step(log,name,status,command,inputs=None,outputs=None,reason=None,seconds=N
         if p and Path(p).is_file():row['inputs'].append({'path':str(p),'sha256':sha256(p)})
     for p in outputs or []:
         if p and Path(p).is_file():row['outputs'].append({'path':str(p),'sha256':sha256(p)})
-    log.append(row);return row
+    log.append(row)
+    from .observatory.events import emit_step
+    emit_step(row)
+    return row
 
 
 def _report(path,idea,start,end,sources,records,opportunities,summary,missing):

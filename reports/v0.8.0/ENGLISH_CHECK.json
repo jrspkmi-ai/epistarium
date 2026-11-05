@@ -1,0 +1,25 @@
+{
+  "status": "SUCCESS",
+  "document_count": 53,
+  "three_longest_sentences": [
+    {
+      "words": 25,
+      "file": "reports/v0.7.0/TEST_RESULTS.md",
+      "line": 39
+    },
+    {
+      "words": 24,
+      "file": "docs/en/observatory/README.md",
+      "line": 54
+    },
+    {
+      "words": 22,
+      "file": "AGENTS.md",
+      "line": 34
+    }
+  ],
+  "issues": [],
+  "scope": "Static English prose only. Code, tables, source quotations, meaning, and dynamic input require separate review.",
+  "source": "AminBlg/SimpleEnglish 2.1.1, Plain mode",
+  "certification": "NOT_CLAIMED"
+}

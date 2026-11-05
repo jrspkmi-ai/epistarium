@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "test_mode": "OFFLINE_UI_WITH_REAL_SYNTHETIC_JORHAS_OUTPUT",
+  "browser": "Chromium headless",
+  "language_switch": "PASS",
+  "theme_switch": "PASS",
+  "persona_cards": 10,
+  "approval_dialog": "PASS",
+  "page_errors": [],
+  "live_browser_server_connection": "BLOCKED_BY_ADMINISTRATOR"
+}

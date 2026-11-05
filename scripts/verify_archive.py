@@ -3,12 +3,13 @@ from pathlib import Path,PurePosixPath
 import argparse,hashlib,io,json,stat,zipfile
 from email.parser import BytesParser
 from package_release import EXCLUDED,SECRET_NAMES,SECRET_SUFFIXES
+from epistarium import __version__
 
 
 def verify(path):
     archive=Path(path);errors=[]
     with zipfile.ZipFile(archive) as z:
-        names=z.namelist();prefix='EPISTARIUM_v0.7.1/'
+        names=z.namelist();prefix=f'EPISTARIUM_v{__version__}/'
         if len(names)!=len(set(names)):errors.append('duplicate archive entries')
         if z.testzip() is not None:errors.append('CRC failure')
         for info in z.infolist():
@@ -30,13 +31,13 @@ def verify(path):
         skills=[n for n in names if n.endswith('/SKILL.md')]
         if len(skills)!=10 or any(not n.startswith(prefix+'.agents/skills/') for n in skills):errors.append('persona count/location mismatch')
         release=json.loads(z.read(prefix+'RELEASE.json'))
-        if release['version']!='0.7.1' or release['status']!='RELEASE_CANDIDATE' or release['public_release_gate']!='GO_BERSYARAT':errors.append('release metadata mismatch')
-        wheelname=prefix+'dist/epistarium-0.7.1-py3-none-any.whl'
+        if release['version']!=__version__ or release['status']!='RELEASE_CANDIDATE' or release['public_release_gate'] not in ('PENDING_CROSS_OS_CI','GO_BERSYARAT'):errors.append('release metadata mismatch')
+        wheelname=prefix+f'dist/epistarium-{__version__}-py3-none-any.whl'
         wheelcontent=z.read(wheelname)
         with zipfile.ZipFile(io.BytesIO(wheelcontent)) as wheel:
             member=next(n for n in wheel.namelist() if n.endswith('.dist-info/METADATA'))
             metadata=BytesParser().parsebytes(wheel.read(member))
-            if metadata['Version']!='0.7.1' or metadata['License-Expression']!='MIT':errors.append('wheel metadata mismatch')
+            if metadata['Version']!=__version__ or metadata['License-Expression']!='MIT':errors.append('wheel metadata mismatch')
             if any(n.endswith(('.so','.dll','.pyd','.dylib')) for n in wheel.namelist()):errors.append('unexpected bundled native dependency')
             if not any(n.endswith('/licenses/third_party/SimpleEnglish/LICENSE') for n in wheel.namelist()):errors.append('SimpleEnglish notice missing from wheel')
     return {'status':'FAIL' if errors else 'PASS','archive':archive.name,'sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),

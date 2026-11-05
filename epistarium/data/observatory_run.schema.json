@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jrspkmi-ai/epistarium/schemas/observatory_run.schema.json",
+  "title": "EPISTARIUM Observatory Run v1",
+  "type": "object",
+  "required": ["schema", "id", "idea", "mode", "language", "status", "created_at", "updated_at", "execution_status", "evidence_status", "pending_gate", "personas"],
+  "properties": {
+    "schema": {"const": "epistarium.observatory.run.v1"},
+    "id": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+    "idea": {"type": "string", "minLength": 3, "maxLength": 1000},
+    "mode": {"enum": ["pathfind", "full"]},
+    "language": {"enum": ["en", "id"]},
+    "status": {"enum": ["QUEUED", "RUNNING", "AWAITING_APPROVAL", "RELEASE_AUTHORIZED", "REJECTED", "NEEDS_CHANGES", "FAILED", "BLOCKED"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "execution_status": {"enum": ["NOT_RUN", "SUCCESS", "PARTIAL", "BLOCKED", "FAILED"]},
+    "evidence_status": {"type": "string"},
+    "pending_gate": {"enum": [null, "ONLINE_ACCESS", "FINAL_ARTIFACT"]},
+    "personas": {"type": "object", "minProperties": 10, "maxProperties": 10, "additionalProperties": {"enum": ["NOT_RUN", "QUEUED", "RUNNING", "SUCCESS", "PARTIAL", "BLOCKED", "FAILED"]}}
+  },
+  "additionalProperties": true
+}

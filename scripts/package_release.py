@@ -52,7 +52,7 @@ def package(output):
     output.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
         for path in selected + [manifest]:
-            info = zipfile.ZipInfo(f'EPISTARIUM_v{__version__}/' + path.relative_to(ROOT).as_posix(), date_time=(2026, 11, 3, 0, 0, 0))
+            info = zipfile.ZipInfo(f'EPISTARIUM_v{__version__}/' + path.relative_to(ROOT).as_posix(), date_time=(2026, 11, 4, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             archive.writestr(info, path.read_bytes())

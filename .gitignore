@@ -35,3 +35,9 @@ secrets.json
 .claude/skills/
 .claude/epistarium-skills.json
 # Keep synthetic PDFs and DOCX/XLSX fixtures tracked. No global document ban.
+
+# Observatory private runs and credentials
+.epistarium-observatory/
+observatory-runs/
+# Distribution products are released as assets, not stored in Git
+/dist/

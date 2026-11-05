@@ -7,3 +7,5 @@ recursive-include reports *.txt *.md *.json *.csv
 recursive-include scripts *.py
 recursive-include tests *.py
 recursive-include third_party *
+
+recursive-include epistarium/observatory/static *.html *.css *.js
