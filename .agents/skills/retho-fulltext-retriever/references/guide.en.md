@@ -1,6 +1,6 @@
 # Retho | The Paper Retriever
 
-Fulltext Retriever. EPISTARIUM v0.7.0 RELEASE_CANDIDATE.
+Fulltext Retriever. EPISTARIUM v0.9.0 RELEASE_CANDIDATE.
 
 ## Start
 

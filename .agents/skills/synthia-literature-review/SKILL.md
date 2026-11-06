@@ -5,7 +5,7 @@ description: "Use when the user needs a literature matrix, a 20-column review wo
 
 # Synthia | The Knowledge Weaver
 
-EPISTARIUM v0.7.0 RELEASE_CANDIDATE. Function: Literature Review.
+EPISTARIUM v0.9.0 RELEASE_CANDIDATE. Function: Literature Review.
 
 This is one persona with Indonesian and English guidance. Use the language that the user requests. Otherwise, use the language of the current request.
 

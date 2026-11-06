@@ -163,7 +163,17 @@ def _export_xlsx(rows, audit, path, *, template_xlsx=None):
     from openpyxl.styles import Alignment, Font, PatternFill
     from openpyxl.utils import get_column_letter
 
+    sanitization = []
+
     def literal(sheet, row_number, column, value):
+        if isinstance(value, str):
+            import hashlib
+            original = value
+            value = ''.join(ch if (ch in '\t\n\r' or 0x20 <= ord(ch) <= 0xD7FF or 0xE000 <= ord(ch) <= 0xFFFD or 0x10000 <= ord(ch) <= 0x10FFFF) else '\ufffd' for ch in value)
+            changed = sum(a != b for a, b in zip(original, value))
+            if changed:
+                sanitization.append({'sheet': sheet.title, 'cell': f'{row_number}:{column}', 'replacements': changed,
+                                     'original_sha256': hashlib.sha256(original.encode('utf-8', errors='surrogatepass')).hexdigest()})
         cell = sheet.cell(row_number, column)
         cell.value = value
         # Force all source strings to text, including leading =,+,-,@ and tabs.
@@ -249,3 +259,4 @@ def _export_xlsx(rows, audit, path, *, template_xlsx=None):
     if literature_sheet(reopened).max_column < 20:raise ValueError(tr('Reopen check XLSX gagal'))
     reopened.close();wb.close()
     save_json(Path(path).with_name('template_merge_audit.json'),review)
+    save_json(Path(path).with_name('sanitization_audit.json'), {'scope':'XLSX export copy only', 'items':sanitization, 'total_replacements':sum(x['replacements'] for x in sanitization)})

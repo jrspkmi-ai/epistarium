@@ -3,11 +3,11 @@
 <!-- section: identity -->
 # Instalasi pada Linux: Ubuntu and Debian
 
-EPISTARIUM v0.7.1 RELEASE_CANDIDATE. Persyaratan minimum paket: Python 3.11.
+EPISTARIUM v0.9.0 RELEASE_CANDIDATE. Persyaratan minimum paket: Python 3.11.
 Hanya Linux x86_64 dengan Python 3.12.14 yang dijalankan secara lokal. Panduan OS ini tidak membuktikan pengujian native.
 
 Baca [lisensi](../LICENSING.md) sebelum memasang runtime PDF.
-MIT mencakup karya orisinal. Runtime memakai pypdfium2 dan pypdf. Baca gerbang rilis v0.7.1.
+MIT mencakup karya orisinal. Runtime memakai pypdfium2 dan pypdf. Baca gerbang rilis v0.9.0.
 
 <!-- section: python -->
 ## 1. Periksa Python dan buka terminal
@@ -32,11 +32,11 @@ Musl, Alpine, dan Linux ARM masih NOT_RUN. Kandidat ini diuji pada Linux glibc x
 
 Di halaman repositori GitHub, pilih **Code > Download ZIP** atau unduh aset ZIP versi 0.7.1 melalui Releases jika sudah tersedia.
 Gunakan tindakan Extract All atau Ekstrak pada pengelola berkas. Pertahankan seluruh direktori, termasuk .agents/skills/.
-Buka folder hasil ekstraksi (misalnya `epistarium-main` atau `EPISTARIUM_v0.7.1`). Root berisi pyproject.toml, epistarium/, AGENTS.md, dan .agents/skills/.
+Buka folder hasil ekstraksi (misalnya `epistarium-main` atau `EPISTARIUM_v0.9.0`). Root berisi pyproject.toml, epistarium/, AGENTS.md, dan .agents/skills/.
 Pada terminal, pindah ke folder tersebut. Ganti jalur contoh ini dengan jalur Anda sendiri:
 
 ```bash
-cd "/home/YourName/Downloads/EPISTARIUM_v0.7.1"
+cd "/home/YourName/Downloads/EPISTARIUM_v0.9.0"
 ls -a
 ```
 
@@ -60,7 +60,7 @@ Batas versi tidak menyelesaikan kewajiban AGPL. Jangan memakai ulang lingkungan 
 
 Doctor memeriksa impor dependensi, data zona waktu, dan hak tulis. Doctor tidak menguji aktivasi AI native atau kebenaran sumber.
 Pada root yang benar, hasil yang diharapkan adalah version 0.7.1, execution_status SUCCESS, dan skill_count_at_project_root 10.
-Ringkasan ini menggambarkan field yang diharapkan. Keluaran Linux aktual ada dalam [bukti doctor](../../../reports/v0.7.0/doctor-en.json).
+Ringkasan ini menggambarkan field yang diharapkan. Keluaran Linux aktual ada dalam [bukti doctor terdahulu](../../../reports/v0.7.0/doctor-en.json).
 
 <!-- section: example -->
 ## 4. Jalankan contoh pertama dan baca berkasnya
@@ -107,6 +107,6 @@ Jangan menghapus dependensi yang dipakai proyek lain.
 
 Exit code nol hanya menjelaskan eksekusi. Status itu tidak memverifikasi klaim ilmiah.
 Contoh ini tidak memerlukan provider langsung atau layanan AI berbayar.
-Baca [hasil tes](../../../reports/v0.7.0/TEST_RESULTS.md) untuk perintah aktual dan denominasi.
+Baca [hasil tes terdahulu](../../../reports/v0.7.0/TEST_RESULTS.md) untuk perintah aktual dan denominasi.
 
 Referensi resmi diperiksa pada 2026-11-03: [venv](https://docs.python.org/3/library/venv.html) dan referensi Python/OS di atas. Instalasi native Linux: Ubuntu and Debian berstatus PASS hanya untuk alur kontainer.

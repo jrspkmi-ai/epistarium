@@ -24,11 +24,11 @@ Do not publish, push, or change the project license without an explicit owner re
 
 After a contract change, run `python scripts/verify_skills.py` and `python -m pytest -q`. Separate synthetic tests, live access, host tests, and research quality assessment.
 
-This is v0.7.0 RELEASE_CANDIDATE. Read RELEASE.json and reports/v0.7.0/RELEASE_READINESS.md before distribution.
-MIT covers original work only. PyMuPDF keeps its own terms. Public release is on HOLD pending the licensing gate.
+This is v0.9.0 RELEASE_CANDIDATE. Read RELEASE.json and reports/v0.9.0/RELEASE_READINESS.md before distribution.
+MIT covers original work only. The runtime uses pypdfium2 and pypdf. PyMuPDF remains a test-only extra. Cross-OS release checks remain pending.
 Use the Python interpreter from the project virtual environment. On Windows, call .venv\Scripts\python.exe directly.
 Keep canonical skills in .agents/skills. Generate a Claude project adapter only with scripts/sync_host_skills.py.
 
-## Research Observatory (v0.8.0, optional local runtime)
+## Research Observatory (v0.9.0, optional local runtime)
 
 When a user requests a visible, local, monitored Jorhas run, use `python -m epistarium observatory --idea "TOPIC" --mode pathfind --open`, after checking local process/browser permissions. The dashboard binds to localhost and opens no public port. It reads actual Jorhas events, shows ten persona icons and gates, and defaults to English with optional Indonesian and dark/light controls. Do not report `NOT_RUN` as queued or executed. Do not assume a web-only ChatGPT plugin can start the local server. Details: docs/en/observatory/README.md and docs/id/observatory/README.md.

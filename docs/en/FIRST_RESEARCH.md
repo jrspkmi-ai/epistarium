@@ -59,7 +59,7 @@ Vanlan's example includes a wrong number and a missing PDF. A highlight locates 
 Liora's candidates include synthetic metadata. Agresa's index evidence is also simulated.
 Retho keeps missing, scanned, and mismatched sources separate. Domares and Synthia preserve missing evidence.
 
-The [current demo log](../../reports/v0.7.0/tutorial-smoke.json) records actual exit codes and file checks.
+The [historical demo log](../../reports/v0.7.0/tutorial-smoke.json) records actual exit codes and file checks.
 Native agent execution remains separate from this deterministic CLI run.
 
 <!-- section: next -->

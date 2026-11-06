@@ -1,6 +1,6 @@
 # Huxley | The Citation Cartographer
 
-Citation-Reference Auditor. EPISTARIUM v0.7.0 RELEASE_CANDIDATE.
+Citation-Reference Auditor. EPISTARIUM v0.9.0 RELEASE_CANDIDATE.
 
 ## Start
 

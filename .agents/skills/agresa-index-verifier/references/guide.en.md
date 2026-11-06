@@ -1,6 +1,6 @@
 # Agresa | The Index Sentinel
 
-Index Verifier. EPISTARIUM v0.7.0 RELEASE_CANDIDATE.
+Index Verifier. EPISTARIUM v0.9.0 RELEASE_CANDIDATE.
 
 ## Start
 

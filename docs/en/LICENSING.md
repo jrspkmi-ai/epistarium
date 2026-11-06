@@ -27,7 +27,7 @@ PyMuPDF stays in the optional test extra solely for inherited test fixtures. It 
 | Legacy PyMuPDF combined runtime | HOLD_TERBATAS | AGPL/commercial plan was not resolved for that distribution. |
 | Cross-OS or native AI host claims | NOT_RUN | Do not advertise those as verified. |
 
-The project license is MIT for its original work. The dependency licenses remain separate. See the [current licensing report](../../reports/v0.7.1/LICENSING_RESOLUTION.md).
+The project license is MIT for its original work. The dependency licenses remain separate. See the [historical v0.7.1 licensing report](../../reports/v0.7.1/LICENSING_RESOLUTION.md).
 
 <!-- section: thirdparty -->
 ## Other material and dependencies

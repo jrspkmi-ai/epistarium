@@ -36,7 +36,7 @@ def store(tmp_path):return ObservatoryStore(tmp_path/'observatory')
 
 @pytest.fixture
 def service(tmp_path):
-    server=ObservatoryServer(tmp_path/'service',0)
+    server=ObservatoryServer(tmp_path/'service',0,review_secret='synthetic-review-secret')
     thread=Thread(target=server.serve_forever,daemon=True);thread.start()
     yield server
     server.shutdown();server.server_close();thread.join(timeout=3)
@@ -153,7 +153,8 @@ def test_loopback_server_endpoints_and_host_guard(service):
     status,summary=request(service,'GET','/api/runs/'+run_id,token=boot['token']);assert status==200
     assert summary['run']['evidence_status']=='belum dapat diverifikasi' and len(summary['run']['personas'])==10
     assert 'fixture' not in summary['run'] and 'config' not in summary['run']
-    status,_=request(service,'POST','/api/runs/'+run_id+'/decide',{'decision':'approve'},boot['token']);assert status==200
+    status,_=request(service,'POST','/api/runs/'+run_id+'/decide',{'decision':'approve'},boot['token']);assert status==403
+    status,_=request(service,'POST','/api/runs/'+run_id+'/decide',{'decision':'approve','review_secret':'synthetic-review-secret'},boot['token']);assert status==200
     assert service.store.get(run_id)['status']=='RELEASE_AUTHORIZED'
 
 def test_wrong_content_type_and_id(service):

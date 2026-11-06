@@ -3,7 +3,7 @@
 <!-- section: scope -->
 # Windsurf
 
-EPISTARIUM v0.7.1 RELEASE_CANDIDATE. Dokumentasi diperiksa pada 2026-11-03.
+EPISTARIUM v0.9.0 RELEASE_CANDIDATE. Panduan host diperiksa untuk rilis sebelumnya pada 2026-11-03. Integrasi native v0.9.0 berstatus NOT_TESTED.
 [Dokumentasi skill resmi](https://docs.windsurf.com/windsurf/cascade/skills) dan [situs produk](https://windsurf.com).
 Verifikasi sumber: BLOCKED. Aktivasi EPISTARIUM native: NOT_RUN. Versi aplikasi yang diuji: belum ada.
 Versi minimum aplikasi untuk paket lengkap belum ditetapkan. Gunakan versi yang didukung vendor dan verifikasi fitur yang diperlukan.

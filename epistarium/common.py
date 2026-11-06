@@ -14,6 +14,21 @@ from importlib.resources import files
 EXECUTION_STATUSES = frozenset({"SUCCESS", "PARTIAL", "BLOCKED", "FAILED", "NOT_RUN"})
 
 
+def xml_safe_copy(value, audit=None, path='$'):
+    """Return a sanitized export copy; leave the evidence object untouched."""
+    if audit is None:audit=[]
+    if isinstance(value,str):
+        clean=''.join(c if c in '\t\n\r' or 0x20<=ord(c)<=0xD7FF or 0xE000<=ord(c)<=0xFFFD or 0x10000<=ord(c)<=0x10FFFF else '\ufffd' for c in value)
+        count=sum(a!=b for a,b in zip(value,clean))
+        if count:
+            audit.append({'field':path,'replacements':count,
+                'original_sha256':hashlib.sha256(value.encode('utf-8',errors='surrogatepass')).hexdigest()})
+        return clean
+    if isinstance(value,dict):return {k:xml_safe_copy(v,audit,f'{path}.{k}') for k,v in value.items()}
+    if isinstance(value,list):return [xml_safe_copy(v,audit,f'{path}[{i}]') for i,v in enumerate(value)]
+    return value
+
+
 def validate_schema(payload, schema_name):
     """Validate a packaged contract with an actionable JSON-path error."""
     from jsonschema import Draft202012Validator

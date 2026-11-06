@@ -5,6 +5,9 @@ from pathlib import Path
 import platform
 import sys
 import tempfile
+from packaging.requirements import Requirement
+from packaging.utils import canonicalize_name
+import tomllib
 from . import __version__
 
 DEPENDENCIES = {"pypdfium2": "pypdfium2", "pypdf": "pypdf", "requests": "requests", "python-docx": "docx", "openpyxl": "openpyxl", "jsonschema": "jsonschema", "defusedxml": "defusedxml"}
@@ -14,10 +17,19 @@ DEPENDENCIES = {"pypdfium2": "pypdfium2", "pypdf": "pypdf", "requests": "request
 def diagnose(project_root=None):
     root = Path(project_root or Path.cwd())
     checks = {"python": {"ok": sys.version_info >= (3, 11), "version": platform.python_version()}}
+    project = root / "pyproject.toml"
+    if project.is_file():
+        with project.open("rb") as stream:
+            requirements = tomllib.load(stream)["project"]["dependencies"]
+    else:
+        requirements = metadata.requires("epistarium") or []
+    specs = {canonicalize_name(r.name): r for r in map(Requirement, requirements) if not r.marker or r.marker.evaluate()}
     for distribution, module in DEPENDENCIES.items():
         try:
             import_module(module)
-            checks[distribution] = {"ok": True, "version": metadata.version(distribution)}
+            version = metadata.version(distribution)
+            requirement = specs.get(canonicalize_name(distribution))
+            checks[distribution] = {"ok": bool(requirement and version in requirement.specifier), "version": version, "required": str(requirement.specifier) if requirement else "UNDECLARED"}
         except (ImportError, metadata.PackageNotFoundError, OSError) as exc:
             checks[distribution] = {"ok": False, "error": type(exc).__name__}
     try:

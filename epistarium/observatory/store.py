@@ -67,6 +67,7 @@ class ObservatoryStore:
                 previous['interruption_reason']='LOCAL_PROCESS_RESTARTED'
                 atomic_json(candidate/'run.json',previous)
                 self._append(candidate.name,'interrupted',message='The prior local process stopped; no resumed execution is claimed.')
+            self.reconcile_agent_plan(candidate.name)
 
     def _dir(self,run_id):
         if not isinstance(run_id,str) or not RUN_ID.fullmatch(run_id):
@@ -107,6 +108,10 @@ class ObservatoryStore:
                 'personas':{name:'NOT_RUN' for name in PERSONAS},
                 'outputs_relative':f'outputs/{run_id}'}
             atomic_json(base/'run.json',state)
+            from .bridge import issue_capability
+            from .plan import save_plan
+            issue_capability(base)
+            save_plan(self, run_id)
             self.conditions[run_id]=Condition(self.lock)
             self._append(run_id,'run_created',message='Run created; no evidence has yet been verified.')
             if online:self._append(run_id,'approval_requested',gate='ONLINE_ACCESS',message='External access requires explicit consent.')
@@ -134,7 +139,15 @@ class ObservatoryStore:
                 'run_id':run_id,'time':utcnow(),'kind':kind,**payload}
         serialized=json.dumps(record,ensure_ascii=False,separators=(',',':'))
         if len(serialized)>16_384:raise ValueError('Event exceeds permitted size')
+        # Preserve a partially written record after a crash, while ensuring the
+        # next valid JSON event starts on a fresh line.
+        if events.exists() and events.stat().st_size:
+            with events.open('rb') as existing:
+                existing.seek(-1,os.SEEK_END)
+                incomplete=existing.read(1)!=b'\n'
+        else:incomplete=False
         with events.open('a',encoding='utf-8') as stream:
+            if incomplete:stream.write('\n')
             stream.write(serialized+'\n');stream.flush();os.fsync(stream.fileno())
         condition=self.conditions.get(run_id)
         if condition:condition.notify_all()
@@ -176,6 +189,50 @@ class ObservatoryStore:
                     continue
         return rows[-1000:]
 
+    def event_count(self, run_id):
+        path=self._dir(run_id)/'events.jsonl'
+        if not path.is_file():return 0
+        with path.open(encoding='utf-8') as stream:
+            return sum(1 for _ in stream)
+
+    def agent_reports(self, run_id):
+        reports={}
+        path=self._dir(run_id)/'events.jsonl'
+        if not path.exists():return reports
+        with path.open(encoding='utf-8') as stream:
+            for line in stream:
+                try:event=json.loads(line)
+                except (ValueError,UnicodeError):continue
+                if isinstance(event,dict) and event.get('kind')=='agent_event' and isinstance(event.get('persona'),str) and event['persona'] in PERSONAS:
+                    reports[event['persona']]={k:event.get(k) for k in
+                        ('status','actor','step_id','time','artifact_ref','provenance')}
+        return reports
+
+    def reconcile_agent_plan(self,run_id):
+        """Rebuild the derived host plan from the durable event ledger."""
+        with self.lock:
+            directory=self._dir(run_id);plan_path=directory/'WORKFLOW_PLAN.json'
+            plan=read_json(plan_path)
+            if not isinstance(plan,dict):return
+            ledger=directory/'events.jsonl';reports={}
+            if ledger.exists():
+                with ledger.open(encoding='utf-8') as stream:
+                    for line in stream:
+                        try:event=json.loads(line)
+                        except (ValueError,UnicodeError):continue
+                        if isinstance(event,dict) and event.get('kind')=='agent_event' and isinstance(event.get('step_id'),str):
+                            reports[event['step_id']]={k:event.get(k) for k in
+                                ('step_id','persona','actor','operation','status','source_event_id',
+                                 'parent_step_id','payload_sha256','artifact_ref','event_source',
+                                 'executor_identity','provenance','message','time')}
+                            reports[event['step_id']]['research_run_id']=run_id
+            if reports!=plan.get('agent_reported_steps',{}):
+                plan['agent_reported_steps']=reports
+                atomic_json(plan_path,plan)
+                output=self._output(run_id)/'WORKFLOW_PLAN.json'
+                if self.get(run_id)['status'] not in ('RELEASE_AUTHORIZED','REJECTED') and output.is_file() and not output.is_symlink():
+                    atomic_json(output,plan)
+
     def wait(self,run_id,seconds=10):
         with self.lock:
             self._dir(run_id)
@@ -193,10 +250,22 @@ class ObservatoryStore:
             gate=state['pending_gate']
             # A record of authorization does not establish claim support or source verification.
             record={'decision':decision,'gate':gate,'reviewer':reviewer,'reason':reason.strip(),
-                    'time':utcnow(),'evidence_status_unchanged':state['evidence_status']}
+                    'time':utcnow(),'evidence_status_unchanged':state['evidence_status'],
+                    'identity_assurance':'LOCAL_SESSION_UNVERIFIED',
+                    'reviewer_claim':'User of the local session; identity and human presence are not authenticated.'}
             if gate=='FINAL_ARTIFACT':
                 report=self._output(run_id)/('RUN_MANIFEST.json' if state['mode']=='pathfind' else 'FULL_RESEARCH_MANIFEST.json')
-                if report.is_file():record['manifest_sha256']=hashlib.sha256(report.read_bytes()).hexdigest()
+                if not report.is_file() or report.is_symlink():raise ValueError('Final manifest unavailable')
+                record['manifest_sha256']=hashlib.sha256(report.read_bytes()).hexdigest()
+                snapshot=[]
+                for path in sorted(self._output(run_id).rglob('*')):
+                    if path.is_symlink() or not path.is_file():continue
+                    if len(snapshot)>=1000:raise ValueError('Too many artifacts to authorize safely')
+                    h=hashlib.sha256()
+                    with path.open('rb') as source:
+                        for chunk in iter(lambda:source.read(1024*1024),b''):h.update(chunk)
+                    snapshot.append({'path':path.relative_to(self._output(run_id)).as_posix(),'sha256':h.hexdigest()})
+                record['artifact_snapshot']=snapshot
             d=self._dir(run_id)
             approvals=read_json(d/'approvals.json',[]) or []
             approvals.append(record)
@@ -214,7 +283,7 @@ class ObservatoryStore:
             else:state['status']='NEEDS_CHANGES'
             state['updated_at']=utcnow()
             atomic_json(d/'run.json',state)
-            self._append(run_id,'decision',gate=gate,decision=decision,message='Human decision recorded; evidence status unchanged.')
+            self._append(run_id,'decision',gate=gate,decision=decision,message='Local-session decision recorded; evidence status unchanged. Identity is not independently authenticated.')
             return {'record':record,'state':state}
 
     def artifacts(self,run_id):
@@ -240,6 +309,7 @@ class ObservatoryStore:
 
     def evidence_summary(self,run_id):
         root=self._output(run_id)
+        if self.get(run_id)['mode']=='full':root=root/'path_finding'
         src=read_json(root/'SOURCE_LEDGER.json',{})
         data=read_json(root/'DATA_LEDGER.json',{})
         return {'source_records':len(src.get('records',[])) if isinstance(src,dict) else None,

@@ -5,7 +5,7 @@ description: "Use when the user needs local PDF access, document versions, sourc
 
 # Retho | The Paper Retriever
 
-EPISTARIUM v0.7.0 RELEASE_CANDIDATE. Function: Fulltext Retriever.
+EPISTARIUM v0.9.0 RELEASE_CANDIDATE. Function: Fulltext Retriever.
 
 This is one persona with Indonesian and English guidance. Use the language that the user requests. Otherwise, use the language of the current request.
 

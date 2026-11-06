@@ -3,11 +3,11 @@ English | [Bahasa Indonesia](../../id/install/windows.md)
 <!-- section: identity -->
 # Install on Windows 10/11
 
-EPISTARIUM v0.7.1 RELEASE_CANDIDATE. Minimum package requirement: Python 3.11.
+EPISTARIUM v0.9.0 RELEASE_CANDIDATE. Minimum package requirement: Python 3.11.
 Only Linux x86_64 with Python 3.12.14 ran locally. This OS guide is documentation, not proof of native testing.
 
 Read [licensing](../LICENSING.md) before installing the PDF runtime.
-MIT covers original work. The runtime uses pypdfium2 and pypdf. See the v0.7.1 release gate.
+MIT covers original work. The runtime uses pypdfium2 and pypdf. See the v0.9.0 release gate.
 
 <!-- section: python -->
 ## 1. Install Python and open PowerShell
@@ -33,11 +33,11 @@ Check [official Windows instructions](https://docs.python.org/3/using/windows.ht
 
 On the GitHub repository page, select **Code > Download ZIP** or download the versioned ZIP asset from Releases when available.
 Use your file manager's Extract All or Extract action. Keep the complete directory, including .agents/skills/.
-Open the extracted project folder (for example, `epistarium-main` or `EPISTARIUM_v0.7.1`). Its root contains pyproject.toml, epistarium/, AGENTS.md, and .agents/skills/.
+Open the extracted project folder (for example, `epistarium-main` or `EPISTARIUM_v0.9.0`). Its root contains pyproject.toml, epistarium/, AGENTS.md, and .agents/skills/.
 In the terminal, change to that folder. Replace this example path with your own:
 
 ```powershell
-Set-Location -LiteralPath "C:\Users\YourName\Downloads\EPISTARIUM_v0.7.1"
+Set-Location -LiteralPath "C:\Users\YourName\Downloads\EPISTARIUM_v0.9.0"
 Get-ChildItem -Force
 ```
 
@@ -61,7 +61,7 @@ It does not resolve AGPL obligations. Do not reuse a mixed 2.x environment. Crea
 
 Doctor checks dependency imports, time zone data, and write access. It does not test native AI activation or source truth.
 Expect version 0.7.1, execution_status SUCCESS, and skill_count_at_project_root 10 at the correct project root.
-This is an expected field summary. Exact observed Linux output is in [doctor evidence](../../../reports/v0.7.0/doctor-en.json).
+This is an expected field summary. Exact observed Linux output is in [historical doctor evidence](../../../reports/v0.7.0/doctor-en.json).
 
 <!-- section: example -->
 ## 4. Run the first example and read its files
@@ -108,7 +108,7 @@ Do not remove dependencies shared by other projects.
 
 A zero exit code describes execution only. It does not verify scientific claims.
 No live provider or paid AI service is required for these examples.
-See [test results](../../../reports/v0.7.0/TEST_RESULTS.md) for actual commands and denominators.
+See [historical test results](../../../reports/v0.7.0/TEST_RESULTS.md) for actual commands and denominators.
 
 If PowerShell blocks Activate.ps1, keep using the explicit python.exe commands above. No execution-policy change is needed.
 

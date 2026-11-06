@@ -88,6 +88,7 @@ def run(argv=None):
     pf.add_argument("--as-of",help=tr('YYYY-MM-DD untuk pengujian/reproduksi'))
     pf.add_argument("--timezone",default="Asia/Jakarta")
     pf.add_argument("--online",action="store_true",help=tr('Izin mencoba adapter eksternal; tidak menerobos pembatas akses'))
+    pf.add_argument("--allow-partial",action="store_true",help="Accept PARTIAL exit code without changing result status")
     full = s.add_parser("jorhas-full",help=tr('Full Research parsial dengan log pemanggilan sembilan spesialis'))
     full.add_argument("--idea",required=True)
     full.add_argument("--out",required=True)
@@ -95,6 +96,7 @@ def run(argv=None):
     full.add_argument("--as-of")
     full.add_argument("--timezone",default="Asia/Jakarta")
     full.add_argument("--online",action="store_true")
+    full.add_argument("--allow-partial",action="store_true",help="Accept PARTIAL exit code without changing result status")
     for subparser in s.choices.values():
         subparser.add_argument('--lang',choices=('id','en','auto'),default=argparse.SUPPRESS,
                                help=tr('Bahasa keluaran: id, en, atau auto'))
@@ -118,13 +120,13 @@ def run(argv=None):
         r=jorhas.pathfind(args.idea,args.out,fixture=args.fixture,
                          config=load_json(args.config) if args.config else None,
                          as_of=args.as_of,timezone=args.timezone,allow_live=args.online)
-        result_code=4 if r['manifest']['status']=='BLOCKED' else 3 if r['manifest']['status']=='PARTIAL' else 0
+        result_code=4 if r['manifest']['status'] in ('BLOCKED','FAILED','NOT_RUN') else (0 if args.allow_partial else 3) if r['manifest']['status']=='PARTIAL' else 0
         print(tr('Jorhas Path Finding: {v0}, {v1} data records, {v2} opsi; lihat {v3}/RUN_MANIFEST.json',v0=f"{display_status(r['manifest']['status'])}", v1=f"{len(r['records'])}", v2=f"{len(r['opportunities'])}", v3=f'{args.out}'))
     elif args.command=="jorhas-full":
         r=jorhas.full_research(args.idea,args.out,
                              config=load_json(args.config) if args.config else None,
                              as_of=args.as_of,timezone=args.timezone,allow_live=args.online)
-        result_code=4 if r['deliverable_status']=='INCOMPLETE' else 3
+        result_code=4 if r['deliverable_status']=='INCOMPLETE' or r['status'] in ('BLOCKED','FAILED') else (0 if args.allow_partial and r['status']=='PARTIAL' else 3)
         print(tr('Jorhas Full Research: {v0}; detail {v1}/FULL_RESEARCH_MANIFEST.json',v0=f"{display_status(r['status'])}", v1=f'{args.out}'))
     elif args.command in ("ideon-design","ideon-origo"):
         if args.command=="ideon-design" and args.legacy_rmc:

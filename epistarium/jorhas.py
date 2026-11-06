@@ -1,7 +1,7 @@
 """Jorhas: conservative orchestration with real step records. No autonomous LLM browsing."""
 from __future__ import annotations
 from .i18n import tr, display_status, localized, get_language, normalize_aliases, ORIGO_ALIASES, display_issue_codes, column_labels
-import csv, json, os, platform, re, sys, time
+import csv, json, os, platform, re, sys, time, uuid
 from pathlib import Path
 from datetime import date
 from urllib.parse import urlparse
@@ -90,9 +90,11 @@ def _opportunities(idea,records):
 
 
 @localized
-def pathfind(idea,out_dir,*,fixture=None,config=None,as_of=None,timezone='Asia/Jakarta',allow_live=False,client=None):
+def pathfind(idea,out_dir,*,fixture=None,config=None,as_of=None,timezone='Asia/Jakarta',allow_live=False,client=None,research_run_id=None):
     """Path Finding actual execution. An offline fixture is always marked synthetic."""
     idea=_safe_idea(idea); cfg=config or {}
+    research_run_id=research_run_id or uuid.uuid4().hex
+    if not isinstance(research_run_id,str) or not re.fullmatch(r'[0-9a-f]{32}',research_run_id):raise ValueError('Invalid research run ID')
     if not isinstance(cfg,dict):raise ValueError(tr('config harus objek JSON'))
     out=prepare_run_directory(out_dir)
     end=date.fromisoformat(as_of) if as_of else today(timezone)
@@ -231,9 +233,12 @@ def pathfind(idea,out_dir,*,fixture=None,config=None,as_of=None,timezone='Asia/J
     any_live=any(s['execution_status']=='SUCCESS' and s['source_id'].startswith('ACTIVE') for s in sources)
     run_status='PARTIAL' if records or any_live else 'BLOCKED'
     _step(log,'pathfinding_result',run_status,'pathfind',reason=tr('Kandidat penelitian belum lolos review semantik dan sumber; capaian empiris terbatas'))
+    for row in log:
+        row.update(research_run_id=research_run_id,step_id='jorhas',parent_step_id=None,
+                   executor_identity='epistarium_python',event_source='runtime_observed')
     save_json(out/'RUN_LOG.json',log)
     manifest={'language':get_language(),'schema_version':'epistarium.pathfinder.run.v1','version':VERSION,'mode':'PATH_FINDING',
-      'idea':idea,'run_date':end.isoformat(),'timezone':timezone,'phenomenon_start':start.isoformat(),
+      'research_run_id':research_run_id,'idea':idea,'run_date':end.isoformat(),'timezone':timezone,'phenomenon_start':start.isoformat(),
       'phenomenon_end':end.isoformat(),'status':run_status,'fixture':bool(fixture),'allow_live':bool(allow_live),
       'coverage':tr('Hanya adapter yang dijalankan dan sumber pada ledger, bukan seluruh web.'),
       'retrieval_requests':getattr(http,'count',0),'runtime_seconds':round(time.monotonic()-start_clock,3),
@@ -246,20 +251,24 @@ def pathfind(idea,out_dir,*,fixture=None,config=None,as_of=None,timezone='Asia/J
 
 
 @localized
-def full_research(idea,out_dir,*,config=None,as_of=None,timezone='Asia/Jakarta',allow_live=False):
+def full_research(idea,out_dir,*,config=None,as_of=None,timezone='Asia/Jakarta',allow_live=False,research_run_id=None):
     """Invoke real local F1-F3 functions only when input contracts are met."""
     from . import liora,agresa,retho,domares,synthia,vanlan,origo,quilo,huxley
+    research_run_id=research_run_id or uuid.uuid4().hex
+    if not isinstance(research_run_id,str) or not re.fullmatch(r'[0-9a-f]{32}',research_run_id):raise ValueError('Invalid research run ID')
     cfg=config or {}
     if not isinstance(cfg,dict):raise ValueError(tr('config harus objek JSON'))
     cfg=normalize_aliases(cfg,ORIGO_ALIASES)
     if 'synthia_xlsx' in cfg and not isinstance(cfg['synthia_xlsx'],bool):raise ValueError(tr('synthia_xlsx harus boolean'))
     base=prepare_run_directory(out_dir)
     pf=pathfind(idea,base/'path_finding',fixture=cfg.get('pathfinder_fixture'),config=cfg,
-                as_of=as_of,timezone=timezone,allow_live=allow_live)
+                as_of=as_of,timezone=timezone,allow_live=allow_live,research_run_id=research_run_id)
     log=list(pf['log']);statuses={'Path Finding':pf['manifest']['status']}
     paths={};actual={};stage_results={}
     def invoke(name,fn,*,input_files=None):
         t0=time.monotonic()
+        from .observatory.events import emit_step
+        emit_step({'step':name, 'status':'RUNNING', 'inputs':[], 'outputs':[]})
         try:
             result=fn();actual[name]=result
             outcome=assess_stage(name,result,paths.get(name,[]))
@@ -347,11 +356,11 @@ def full_research(idea,out_dir,*,config=None,as_of=None,timezone='Asia/Jakarta',
     by_do={r['article_id']:r for r in do_records}
     crosswalk=[]
     for i,r in enumerate(li_records,1):
-        doi=str(r.get('doi') or '').casefold();article_id=r['article_id'];re=by_re.get(article_id,{});dr=by_do.get(article_id,{})
+        doi=str(r.get('doi') or '').casefold();article_id=r['article_id'];retrieval=by_re.get(article_id,{});dr=by_do.get(article_id,{})
         crosswalk.append({'crosswalk_id':f'LW-{i:04d}','article_id':article_id,'doi':doi or None,'title':r.get('title'),
                 'liora_level':r.get('available_level'),'liora_origin':r.get('query_url'),
-                'retho_article_id':re.get('article_id'),'retho_status':re.get('status'),
-                'retho_pdf_sha256':re.get('pdf_sha256'),
+                'retho_article_id':retrieval.get('article_id'),'retho_status':retrieval.get('status'),
+                'retho_pdf_sha256':retrieval.get('pdf_sha256'),
                 'domares_reading_level':dr.get('reading_level'),'domares_integrity_status':dr.get('integrity_status'),
                 'semantic_verified':False,'research_gap_verified':False,'source_type':'academic_metadata'})
     save_json(base/'EVIDENCE_CROSSWALK.json',{'schema_version':'epistarium.jorhas.crosswalk.v1',
@@ -359,10 +368,15 @@ def full_research(idea,out_dir,*,config=None,as_of=None,timezone='Asia/Jakarta',
         'url':x.get('url'),'status':x.get('execution_status')} for x in pf['sources']],
         'linkage_caution':'DOI linkage not evidence of claim support; human review required.'})
     _step(log,'evidence_crosswalk','SUCCESS','write_artifact',outputs=[base/'EVIDENCE_CROSSWALK.json'])
+    for row in log:
+        step=str(row.get('step','')).lower().replace(' ','_')
+        row.update(research_run_id=research_run_id,step_id=step,parent_step_id='jorhas',
+                   executor_identity=None if row['status']=='NOT_RUN' else 'epistarium_python',
+                   event_source='runtime_observed')
     save_json(base/'FULL_RESEARCH_RUN_LOG.json',log)
     overview={'language':get_language(),'schema_version':'epistarium.jorhas.full.v1','mode':'FULL_RESEARCH','status':'PARTIAL',
-       'version':VERSION,'idea':idea,'run_time':now_iso(),'stage_statuses':statuses,'stage_results':stage_results,
-       'execution_status':'PARTIAL' if any(s in ('BLOCKED','FAILED','NOT_RUN') for s in statuses.values()) else 'SUCCESS',
+       'version':VERSION,'research_run_id':research_run_id,'idea':idea,'run_time':now_iso(),'stage_statuses':statuses,'stage_results':stage_results,
+       'execution_status':'PARTIAL' if any(s in ('PARTIAL','BLOCKED','FAILED','NOT_RUN') for s in statuses.values()) else 'SUCCESS',
        'deliverable_status':'INCOMPLETE' if any(v['deliverable_status']=='INCOMPLETE' for v in stage_results.values()) else 'COMPLETE_FOR_EXECUTED_STAGES',
        'evidence_status':'belum dapat diverifikasi',
        'claims_verification':'NO_AUTOMATIC_PROMOTION',
@@ -381,4 +395,13 @@ def full_research(idea,out_dir,*,config=None,as_of=None,timezone='Asia/Jakarta',
       tr('Setiap status didukung `FULL_RESEARCH_RUN_LOG.json`. Langkah NOT_RUN tidak pernah dinyatakan dipanggil.\n'),encoding='utf8')
     overview['artifacts']['FULL_RESEARCH_SUMMARY.md']=sha256(base/'FULL_RESEARCH_SUMMARY.md')
     save_json(base/'FULL_RESEARCH_MANIFEST.json',validate_schema(overview,'jorhas_full_manifest'))
+    from .observatory.plan import make_plan
+    plan=make_plan(research_run_id,'full')
+    for item in plan['steps']:
+        key='Path Finding' if item['persona']=='Jorhas' else 'Ideon ORIGO' if item['persona']=='Ideon' else item['persona']
+        status=statuses.get(key,'NOT_RUN')
+        item.update(execution_status=status,event_source='runtime_observed',
+                    executor_identity=None if status=='NOT_RUN' else 'epistarium_python',
+                    reason=next((r.get('reason') for r in reversed(log) if r.get('step')==key),None))
+    save_json(base/'WORKFLOW_PLAN.json',plan)
     return overview

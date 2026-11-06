@@ -27,7 +27,7 @@ PyMuPDF tetap ada pada extra tes untuk fixture warisan. Kode produksi tidak meng
 | Runtime gabungan PyMuPDF lama | HOLD_TERBATAS | Rencana kepatuhan AGPL/komersial belum tersedia untuk bentuk itu. |
 | Klaim lintas OS atau host AI native | NOT_RUN | Jangan nyatakan sudah diverifikasi. |
 
-Lisensi proyek MIT berlaku untuk karya orisinal. Lisensi dependensi tetap terpisah. Baca [laporan lisensi kini](../../reports/v0.7.1/LICENSING_RESOLUTION.md).
+Lisensi proyek MIT berlaku untuk karya orisinal. Lisensi dependensi tetap terpisah. Baca [laporan lisensi v0.7.1](../../reports/v0.7.1/LICENSING_RESOLUTION.md).
 
 <!-- section: thirdparty -->
 ## Materi lain dan dependensi
@@ -38,7 +38,7 @@ Repositori tersebut hanya menjadi acuan tujuan navigasi.
 
 Requests memakai Apache-2.0. python-docx, openpyxl, dan jsonschema menyatakan lisensi MIT. Paket transitif mencakup lisensi lain, seperti MPL-2.0 dan BSD.
 Tzdata Windows memiliki Apache-2.0 dan pemberitahuan data zona waktu. Paket itu tidak dijalankan pada Windows di sini.
-Perangkat tes/build terpasang diaudit terpisah dalam [laporan lisensi terkini](../../reports/v0.7.1/LICENSING_RESOLUTION.md).
+Perangkat tes/build terpasang diaudit terpisah dalam [laporan lisensi v0.7.1](../../reports/v0.7.1/LICENSING_RESOLUTION.md).
 ZIP proyek dan wheel EPISTARIUM tidak membundel wheel dependensi pihak ketiga atau pustaka native.
 Pip mengambil dependensi secara terpisah. Kewajiban lisensinya tetap berlaku.
 

@@ -1,6 +1,6 @@
 # Jorhas | The Path Finder
 
-Master Diving. EPISTARIUM v0.7.0 RELEASE_CANDIDATE.
+Master Diving. EPISTARIUM v0.9.0 RELEASE_CANDIDATE.
 
 ## Start
 
