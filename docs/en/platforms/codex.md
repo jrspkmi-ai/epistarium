@@ -3,7 +3,7 @@ English | [Bahasa Indonesia](../../id/platforms/codex.md)
 <!-- section: scope -->
 # OpenAI Codex
 
-EPISTARIUM v0.7.1 RELEASE_CANDIDATE. Documentation checked 2026-11-03.
+EPISTARIUM v0.9.0 RELEASE_CANDIDATE. This host guide was reviewed for an earlier release on 2026-11-03. Native v0.9.0 integration is NOT_TESTED.
 Official [skill documentation](https://learn.chatgpt.com/docs/build-skills) and [product site](https://learn.chatgpt.com).
 Source verification: PASS. Native EPISTARIUM activation: NOT_RUN. App version tested: none.
 The minimum app version for this complete package is not established. Use a vendor-supported version and verify the required feature.

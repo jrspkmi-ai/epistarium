@@ -16,7 +16,7 @@ Simpan riset privat, PDF berlisensi, preset dan kredensial di luar paket publik.
 
 Setelah perubahan kontrak, jalankan pemeriksa panduan dan pytest. Bedakan tes sintetis, akses live, uji host native serta evaluasi mutu ilmiah.
 
-Paket ini v0.7.0 RELEASE_CANDIDATE. Baca RELEASE.json dan reports/v0.7.0/RELEASE_READINESS.md sebelum distribusi.
-MIT hanya mencakup karya orisinal. Runtime memakai pypdfium2 dan pypdf. Gerbang rilis bersyarat mengikuti laporan v0.7.1.
+Paket ini v0.9.0 RELEASE_CANDIDATE. Baca RELEASE.json dan reports/v0.9.0/RELEASE_READINESS.id.md sebelum distribusi.
+MIT hanya mencakup karya orisinal. Runtime memakai pypdfium2 dan pypdf. Pengujian lintas OS untuk versi ini masih menunggu hasil CI.
 Gunakan interpreter lingkungan virtual proyek. Pada Windows, panggil .venv\Scripts\python.exe secara langsung.
 Sumber skill kanonis ada di .agents/skills. Buat adaptor proyek Claude hanya dengan scripts/sync_host_skills.py.

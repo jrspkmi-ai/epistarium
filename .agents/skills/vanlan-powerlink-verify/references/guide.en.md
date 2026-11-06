@@ -1,6 +1,6 @@
 # Vanlan | The Evidence Guardian
 
-Powerlink Verify. EPISTARIUM v0.7.0 RELEASE_CANDIDATE.
+Powerlink Verify. EPISTARIUM v0.9.0 RELEASE_CANDIDATE.
 
 ## Start
 

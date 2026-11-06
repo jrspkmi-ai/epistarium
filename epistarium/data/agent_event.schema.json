@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EPISTARIUM agent-reported event v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "event_id", "run_id", "step_id", "persona", "actor", "operation", "status"],
+  "properties": {
+    "schema_version": {"const": "epistarium.agent-event.v1"},
+    "event_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{7,79}$"},
+    "run_id": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+    "step_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,79}$"},
+    "parent_step_id": {"type": ["string", "null"], "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,79}$"},
+    "persona": {"enum": ["Jorhas", "Ideon", "Liora", "Agresa", "Retho", "Domares", "Synthia", "Vanlan", "Quilo", "Huxley"]},
+    "actor": {"enum": ["opencode", "antigravity", "cli", "other"]},
+    "operation": {"enum": ["start", "run", "finish", "read", "write", "search", "extract", "audit", "export", "handoff", "error"]},
+    "status": {"enum": ["RUNNING", "SUCCESS", "PARTIAL", "BLOCKED", "FAILED"]},
+    "artifact_ref": {
+      "type": "object", "additionalProperties": false, "required": ["path", "sha256"],
+      "properties": {"path": {"type": "string", "minLength": 1, "maxLength": 240},
+                     "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+    }
+  },
+  "allOf": [{"if": {"properties": {"status": {"const": "SUCCESS"}}},
+             "then": {"required": ["artifact_ref"]}}]
+}

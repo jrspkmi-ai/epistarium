@@ -11,15 +11,15 @@ Explore. Analyze. Verify.
 
 Modular AI Research Skills
 
-v0.8.0 RELEASE_CANDIDATE. Sepuluh persona penelitian, English dan Bahasa Indonesia, satu basis kode.
+v0.9.0 RELEASE_CANDIDATE. Sepuluh persona penelitian, English dan Bahasa Indonesia, satu basis kode.
 
-MIT mencakup karya orisinal EPISTARIUM. Runtime memakai pypdfium2 dan pypdf. Gerbang rilis: GO_BERSYARAT.
-Baca [lisensi](docs/id/LICENSING.md) dan [kesiapan rilis](reports/v0.7.1/RELEASE_READINESS.id.md).
+MIT mencakup karya orisinal EPISTARIUM. Runtime memakai pypdfium2 dan pypdf. Gerbang rilis: PENDING_CROSS_OS_CI.
+Baca [lisensi](docs/id/LICENSING.md) dan [kesiapan rilis](reports/v0.9.0/RELEASE_READINESS.id.md).
 
 <!-- section: quickstart -->
 ## Mulai di sini
 
-Di halaman repositori GitHub, pilih **Code > Download ZIP**, atau gunakan aset ZIP rilis versi 0.7.1 ketika sudah tersedia. Ekstrak ZIP, lalu buka folder yang berisi `pyproject.toml`, `AGENTS.md`, dan `.agents/skills/`. Nama folder hasil ekstraksi dapat berbeda menurut cara mengunduhnya.
+Di halaman repositori GitHub, pilih **Code > Download ZIP**, atau gunakan aset ZIP rilis versi 0.9.0 ketika sudah tersedia. Ekstrak ZIP, lalu buka folder yang berisi `pyproject.toml`, `AGENTS.md`, dan `.agents/skills/`. Nama folder hasil ekstraksi dapat berbeda menurut cara mengunduhnya.
 
 Gunakan Python 3.11 atau lebih baru. Linux dengan Python 3.12.14 telah diuji di sini. Kombinasi OS/Python lain memerlukan pengujian tersendiri.
 Baca [gerbang lisensi PDF](docs/id/LICENSING.md) terlebih dahulu.
@@ -49,7 +49,7 @@ Bahasa tidak mengubah kutipan sumber, DOI, nama, angka, atau kode status kanonis
 
 Ikuti [Penelitian Pertama](docs/id/FIRST_RESEARCH.md) untuk membaca keluaran dan menjalankan alur sumber hingga telaah secara aman.
 
-## Research Observatory langsung (v0.8.0)
+## Research Observatory langsung (v0.9.0)
 
 Pantau langkah Python Jorhas yang benar-benar berjalan, status sepuluh persona, jumlah rekaman bukti, artefak, dan gerbang persetujuan melalui antarmuka lokal dwi-bahasa (bawaan EN, dapat memilih ID) dengan mode gelap dan terang. Eksekusi selesai **tidak berarti** pembuktian semantik selesai.
 
@@ -57,7 +57,7 @@ Pantau langkah Python Jorhas yang benar-benar berjalan, status sepuluh persona, 
 python -m epistarium observatory --open
 ```
 
-Untuk menjalankan Path Finding lokal, tambahkan `--idea "Topik penelitian" --mode pathfind`. Pembukaan browser otomatis memerlukan lingkungan desktop dan izin sistem. Lihat [panduan Observatory Bahasa Indonesia](docs/id/observatory/README.md) atau [English guide](docs/en/observatory/README.md). Dashboard ini bukan plugin ChatGPT web.
+Untuk menjalankan Path Finding lokal, tambahkan `--idea "Topik penelitian" --mode pathfind`. Pembukaan browser otomatis memerlukan lingkungan desktop dan izin sistem. Lihat [panduan Observatory Bahasa Indonesia](docs/id/observatory/README.md) atau [English guide](docs/en/observatory/README.md). Dashboard ini bukan plugin ChatGPT web. Baca [panduan bridge](docs/id/observatory/BRIDGE.md) untuk event agen dan persetujuan.
 
 <!-- section: installation -->
 ## Pasang sesuai lingkungan
@@ -124,9 +124,9 @@ Baca [protokol bukti](docs/EVIDENCE_PROTOCOL.md), [glosarium status](docs/STATUS
 <!-- section: maintenance -->
 ## Dokumentasi dan pemeliharaan
 
-[Peta dokumentasi](docs/id/INDEX.md) · [Hasil tes terbaru](reports/v0.7.1/TEST_RESULTS.md) · [Audit keamanan](reports/v0.7.0/SECURITY_AUDIT.id.md)
+[Peta dokumentasi](docs/id/INDEX.md) · [Hasil tes terbaru](reports/v0.9.0/TEST_RESULTS.md) · [Audit keamanan](reports/v0.7.0/SECURITY_AUDIT.id.md)
 
-[Kontribusi](CONTRIBUTING.id.md) · [Migrasi](docs/id/migrations/0.6_to_0.7.md) · [Catatan rilis](docs/id/releases/v0.7.1.md) · [Changelog](CHANGELOG.id.md)
+[Kontribusi](CONTRIBUTING.id.md) · [Migrasi](docs/id/migrations/0.6_to_0.7.md) · [Catatan rilis terdahulu](docs/id/releases/v0.7.1.md) · [Changelog](CHANGELOG.id.md)
 
 [Lisensi MIT karya orisinal](LICENSE) · [Pemberitahuan pihak ketiga](THIRD_PARTY_NOTICES.md) · [Penyelesaian lisensi PDF](reports/v0.7.1/LICENSING_RESOLUTION.md)
 
@@ -141,7 +141,7 @@ Baca [protokol bukti](docs/EVIDENCE_PROTOCOL.md), [glosarium status](docs/STATUS
 
 Pada Windows, ganti .venv/bin/python dengan .\.venv\Scripts\python.exe.
 Bahasa Inggris mengikuti [SimpleEnglish Plain 2.1.1](docs/style/SIMPLE_ENGLISH.md). Pertahankan [pemberitahuan MIT](third_party/SimpleEnglish/LICENSE).
-Laporan historis merekam pekerjaan sebelumnya. Laporan v0.7.0 merupakan riwayat; hanya reports/v0.7.1 memuat bukti rilis ini.
+Laporan lama merekam pekerjaan sebelumnya. Bukti versi ini berada dalam reports/v0.9.0.
 Distribusi alpha ini masih memiliki gerbang kelayakan bersyarat. Periksa laporan kesiapan terbaru sebelum penggunaan produksi.
 
-Backend PDF dan keputusan rilis: [kesiapan v0.7.1](reports/v0.7.1/RELEASE_READINESS.id.md).
+Keputusan rilis: [kesiapan v0.9.0](reports/v0.9.0/RELEASE_READINESS.id.md).

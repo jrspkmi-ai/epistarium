@@ -6,7 +6,7 @@ fields, notes and layout require human verification. Originals are never modifie
 from __future__ import annotations
 from .i18n import tr, display_status, localized, get_language
 from pathlib import Path
-import re, json, shutil, csv, copy
+import re, json, shutil, csv, copy, unicodedata
 from urllib.parse import quote
 from .common import save_json, save_csv, now_iso, sha256
 
@@ -14,18 +14,19 @@ YEAR=r'(?:18|19|20)\d{2}[a-z]?|n\.d\.'
 REF_HEAD=re.compile(r'^(.{2,260}?)\s*\(('+YEAR+r')\)\.?\s*(.+)$',re.I)
 GROUP=re.compile(r'\(([^()\n]{3,250})\)')
 YEAR_MATCH=re.compile(r'(?<!\w)(?:18|19|20)\d{2}[a-z]?(?!\w)|\bn\.d\.',re.I)
-NARRATIVE=re.compile(r'\b([A-ZÀ-Ý][\wÀ-ÿ’\-]+(?:\s+et\s+al\.)?(?:\s+(?:&|dan|and)\s+[A-ZÀ-Ý][\wÀ-ÿ’\-]+)?)\s*\(('+ '(?:'+YEAR+')' + r'(?:\s*,\s*'+'(?:'+YEAR+')'+r')*)\)',re.I)
+NARRATIVE=re.compile(r'\b([^\W\d_][\w\u0300-\u036f’\-]+(?:\s+et\s+al\.)?(?:\s+(?:&|dan|and)\s+[^\W\d_][\w\u0300-\u036f’\-]+)?)\s*\(('+ '(?:'+YEAR+')' + r'(?:\s*,\s*'+'(?:'+YEAR+')'+r')*)\)',re.I)
 REF_HEADERS={'references','reference list','bibliography','daftar pustaka','referensi','kepustakaan'}
 
 
 def _norm_name(text):
     text=re.sub(r'\bet al\.?\b','',text,flags=re.I).replace('&',' dan ')
     text=re.sub(r'\band\b','dan',text,flags=re.I)
-    return re.sub(r'[^a-z0-9]+',' ',text.casefold()).strip()
+    return re.sub(r'[^\w]+',' ',unicodedata.normalize('NFC',text).casefold()).strip()
 
 
 def _authors(raw):
-    found=re.findall(r"(?:^|[,;&]\s*|\s+and\s+|\s+dan\s+)([A-ZÀ-Ý][A-Za-zÀ-ÿ\-'’]+),\s*(?:[A-Z]\.?)",raw)
+    raw=unicodedata.normalize('NFC',raw)
+    found=re.findall(r"(?:^|[,;&]\s*|\s+and\s+|\s+dan\s+)([^\W\d_][\w\-'’]*(?:\s+[^\W\d_][\w\-'’]*)*),\s*(?:[^\W\d_]\.?)",raw)
     if found:return found
     return [raw.strip().strip('.,')] if raw.strip() else []
 
@@ -42,6 +43,20 @@ def parse_reference(line,loc):
                    if re.search(r'10\.\d{4,9}/[^\s]+',line,re.I) else None)}
 
 
+def classify_parenthetical(block):
+    """Conservatively separate clear dates, author-date candidates, and review."""
+    dates=list(YEAR_MATCH.finditer(block))
+    if not dates:return 'NON_CITATION'
+    prefix=block[:dates[0].start()].strip(' ,;')
+    if not prefix:return 'NON_CITATION'  # possibly a narrative citation
+    if re.match(r'^\s*(?:survei|survey|periode|period)\b',block,re.I) and not re.search(r',\s*(?:18|19|20)\d{2}',block):
+        return 'NON_CITATION'
+    if re.search(r'\b(?:18|19|20)\d{2}\s*[-–—]\s*(?:18|19|20)\d{2}\b',block) and ',' not in block:
+        return 'NON_CITATION'
+    if re.search(r',\s*(?:(?:18|19|20)\d{2}|n\.d\.)',block,re.I):return 'CITATION'
+    return 'AMBIGUOUS_REVIEW'
+
+
 def detect_citations(text,loc,organization_names=None):
     citations=[]; spans=[]
     for g in GROUP.finditer(text):
@@ -50,11 +65,12 @@ def detect_citations(text,loc,organization_names=None):
         count_before=len(citations)
         grouped=';' in part
         for block in part.split(';'):
+            if classify_parenthetical(block)!='CITATION':continue
             dates=list(YEAR_MATCH.finditer(block))
             if not dates:continue
             prefix=block[:dates[0].start()].strip(' ,;')
             # A bare date in parentheses is usually from a narrative reference; skip.
-            if not prefix or not re.search('[A-Za-zÀ-ÿ]',prefix):continue
+            if not prefix or not any(ch.isalpha() for ch in prefix):continue
             name=re.sub(r'^(?:see|lihat|cf\.|misalnya|e\.g\.)\s*','',prefix,flags=re.I).strip()
             if not name or len(name)>90:continue
             for yr in dates:
@@ -242,7 +258,7 @@ def audit(source,out_dir, *, annotate=False, online=False, candidate_fixture=Non
     for i,(loc,text,p) in enumerate(entries):
         if text.strip().casefold() in REF_HEADERS:
             refstart=i;break
-    refs=[];cit=[];unparsed=[]
+    refs=[];cit=[];unparsed=[];classification_review=[]
     if refstart is not None:
         for loc,text,p in entries[refstart+1:]:
             if not text.strip():continue
@@ -252,6 +268,10 @@ def audit(source,out_dir, *, annotate=False, online=False, candidate_fixture=Non
     organizations=[r['authors'][0] for r in refs if len(r['authors'])==1 and len(r['authors'][0].split())>=2]
     for loc,text,p in (entries if refstart is None else entries[:refstart]):
         cit += detect_citations(text,loc,organization_names=organizations)
+        for group in GROUP.finditer(text):
+            for block in group.group(1).split(';'):
+                if YEAR_MATCH.search(block) and classify_parenthetical(block)=='AMBIGUOUS_REVIEW':
+                    classification_review.append({'location':loc,'surface':group.group(0),'status':'AMBIGUOUS_REVIEW'})
     cited_ids=set()
     for i,c in enumerate(cit,1):
         c['citation_id']=f'C{i:03d}'
@@ -331,6 +351,7 @@ def audit(source,out_dir, *, annotate=False, online=False, candidate_fixture=Non
             'coverage':{'main_body':'PROCESSED','reference_heading_found':refstart is not None,
                         'reference_entries_parsed':len(refs),'unparsed_references':unparsed,**_scope_extras(source)},
             'citation_fields_detected':docx_field,'citations':cit,'references':refs,'proposed_additions':candidates,
+            'classification_review':classification_review,
             'metadata_search':search_log,'annotation':{'status':annotation_status,'file':annotated,
                 'highlighted_citation_ids':highlighted,'highlighted_reference_ids':highlighted_references,
                 'native_comments':'CREATED_AND_ANCHORED' if anchored_comments else ('SKIPPED_DYNAMIC_FIELDS' if docx_field else 'NONE_OR_NOT_IMPLEMENTED'),

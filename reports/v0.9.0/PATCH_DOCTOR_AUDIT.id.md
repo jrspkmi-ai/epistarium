@@ -1,0 +1,3 @@
+# Audit patch doctor
+
+Hash arsip masukan sesuai laporan audit: a8b3f9367f8a45550e1d697a73f4b6944a517a4da06813689ebd98cfe45c2453. Doctor membandingkan versi terpasang dengan spesifikasi pyproject.toml atau metadata distribusi terpasang. Tes regresi mendapati dependensi terlalu lama menghasilkan BLOCKED. Regresi lokal: 432 lulus; pip check, skill dan dokumentasi lulus. Pengujian browser Chromium terhalang: proses browser gagal membuat socket dengan Operation not permitted. Pengujian visual EN/ID, dark/light, live event dan approval belum selesai. Gerbang publik tetap PENDING_CROSS_OS_CI. Perlu audit keamanan lanjutan dan pengujian lintas OS sebelum merge.

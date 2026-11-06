@@ -6,8 +6,12 @@ from pathlib import Path
 from importlib.resources import files
 from threading import Thread
 from secrets import token_urlsafe
+from collections import defaultdict, deque
+from secrets import compare_digest
 from .store import ObservatoryStore
 from .runner import ObservatoryRunner
+from .bridge import authorized as agent_authorized, ingest as ingest_agent_event
+from .._version import __version__
 import json
 import mimetypes
 import re
@@ -19,15 +23,19 @@ ID_RE=re.compile(r'^[0-9a-f]{32}$')
 class ObservatoryServer(ThreadingHTTPServer):
     daemon_threads=True
     allow_reuse_address=True
-    def __init__(self,root,port=4782):
+    def __init__(self,root,port=4782,review_secret=None):
         self.store=ObservatoryStore(root)
         self.runner=ObservatoryRunner(self.store)
         self.token=token_urlsafe(32)
+        if review_secret is not None and (not isinstance(review_secret,str) or not 12<=len(review_secret)<=256):
+            raise ValueError('Review passphrase must contain 12 to 256 characters')
+        self.review_secret=review_secret
+        self.agent_rate=defaultdict(deque)
         super().__init__(('127.0.0.1',int(port)),ObservatoryHandler)
 
 class ObservatoryHandler(BaseHTTPRequestHandler):
     protocol_version='HTTP/1.1'
-    server_version='EPISTARIUMObservatory/0.8'
+    server_version='EPISTARIUMObservatory/0.9'
     def log_message(self,fmt,*args):
         # Do not print access paths, approval tokens or private research terms.
         return
@@ -53,7 +61,7 @@ class ObservatoryHandler(BaseHTTPRequestHandler):
         self._json({'error':message},status)
 
     def _authorized(self):
-        return self.headers.get('X-Observatory-Token','')==self.server.token
+        return compare_digest(self.headers.get('X-Observatory-Token','').encode('utf-8'),self.server.token.encode('utf-8'))
 
     def _segments(self):
         path=urlparse(self.path).path
@@ -84,7 +92,7 @@ class ObservatoryHandler(BaseHTTPRequestHandler):
         try:
             if not seg or seg==['index.html']:return self._serve_static('index.html')
             if len(seg)==1 and seg[0] in SAFE_ASSET:return self._serve_static(seg[0])
-            if seg==['api','health']:return self._json({'status':'ok','service':'EPISTARIUM Observatory','version':'0.8.0'})
+            if seg==['api','health']:return self._json({'status':'ok','service':'EPISTARIUM Observatory','version':__version__})
             if seg==['api','boot']:
                 return self._json({'token':self.server.token,'default_language':'en','default_theme':'dark','personas':list(self.server.store.get(q.get('run',[''])[0])['personas']) if q.get('run') and ID_RE.fullmatch(q['run'][0]) else list(__import__('epistarium.observatory.store',fromlist=['PERSONAS']).PERSONAS)})
             if len(seg)==4 and seg[:2]==['api','runs'] and ID_RE.fullmatch(seg[2]) and seg[3]=='events':
@@ -97,6 +105,7 @@ class ObservatoryHandler(BaseHTTPRequestHandler):
                 if len(seg)==3:
                     state=self.server.store.get(run_id)
                     state={k:v for k,v in state.items() if k not in ('fixture','config')}
+                    state['agent_reported_personas']=self.server.store.agent_reports(run_id)
                     return self._json({'run':state,'evidence':self.server.store.evidence_summary(run_id),
                                        'artifacts':self.server.store.artifacts(run_id),
                                        'recent_events':self.server.store.events(run_id)[-30:]})
@@ -121,12 +130,10 @@ class ObservatoryHandler(BaseHTTPRequestHandler):
         self.end_headers()
         try:
             while True:
-                rows=self.server.store.events(run_id)
-                # Only the latest 1000 events are retained for the live view;
-                # full durable JSONL remains on disk for local audit.
-                cursor=min(cursor,len(rows))
-                if len(rows)>cursor:
-                    cursor=len(rows)
+                count=self.server.store.event_count(run_id)
+                cursor=min(cursor,count)
+                if count>cursor:
+                    cursor=count
                     self.wfile.write(f'id: {cursor}\nevent: changed\ndata: {json.dumps({"count":cursor})}\n\n'.encode('utf-8'))
                 else:
                     self.wfile.write(b': heartbeat\n\n')
@@ -137,17 +144,32 @@ class ObservatoryHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         if not self._origin_host():return self._error(403,'Loopback origin only')
-        if not self._authorized():return self._error(403,'Invalid session token')
+        seg=self._segments()
+        agent_route=(len(seg)==5 and seg[:2]==['api','runs'] and ID_RE.fullmatch(seg[2]) and seg[3:]==['events','agent'])
+        if agent_route:
+            if not agent_authorized(self.server.store,seg[2],self.headers.get('X-Agent-Token','')):
+                return self._error(403,'Invalid run capability')
+            with self.server.store.lock:
+                queue=self.server.agent_rate[seg[2]]
+                now=time.monotonic()
+                while queue and queue[0]<now-60:queue.popleft()
+                if len(queue)>=120:return self._error(429,'Event rate exceeded')
+                queue.append(now)
+        elif not self._authorized():return self._error(403,'Invalid session token')
         if self.headers.get('Content-Type','').split(';')[0].strip().lower()!='application/json':return self._error(415,'JSON required')
         try:
             size=int(self.headers.get('Content-Length','0'))
         except ValueError:
             return self._error(400,'Invalid length')
-        if not 0<size<=32_768:return self._error(413,'Body size must be 1 to 32768 bytes')
+        if not 0<size<=(8192 if agent_route else 32_768):
+            self.close_connection=True
+            return self._error(413,'Body exceeds permitted size')
         try:
             payload=json.loads(self.rfile.read(size))
             if not isinstance(payload,dict):raise ValueError('Expected a JSON object')
-            seg=self._segments()
+            if agent_route:
+                result=ingest_agent_event(self.server.store,seg[2],payload)
+                return self._json(result,200 if result['duplicate'] else 201)
             if seg==['api','runs']:
                 # Browser UI intentionally disallows arbitrary filesystem fixture/config
                 # references and online requests; CLI can explicitly allow those.
@@ -157,6 +179,10 @@ class ObservatoryHandler(BaseHTTPRequestHandler):
                 self.server.runner.launch(state['id'])
                 return self._json({'run_id':state['id']},201)
             if len(seg)==4 and seg[:2]==['api','runs'] and ID_RE.fullmatch(seg[2]) and seg[3]=='decide':
+                secret=payload.pop('review_secret',None)
+                if (not self.server.review_secret or not isinstance(secret,str) or len(secret)>256 or
+                        not compare_digest(secret.encode('utf-8'),self.server.review_secret.encode('utf-8'))):
+                    return self._error(403,'Review passphrase required')
                 result=self.server.runner.decide(seg[2],payload.get('decision'),payload.get('reason',''))
                 return self._json({'run_id':result['id'],'status':result['status']})
             return self._error(404,'Unknown endpoint')
@@ -165,7 +191,15 @@ class ObservatoryHandler(BaseHTTPRequestHandler):
 
 
 def serve(root,port=4782,open_browser=False,initial_run=None):
-    server=ObservatoryServer(root,port)
+    import sys
+    secret=None
+    if sys.stdin.isatty():
+        import getpass
+        secret=getpass.getpass('Set a private review passphrase (12+ characters; blank disables approvals): ')
+        if secret and not 12<=len(secret)<=256:raise ValueError('Review passphrase must contain 12 to 256 characters')
+        secret=secret or None
+    if not secret:print('Review approvals disabled for this session; restart in a terminal to set a passphrase.',flush=True)
+    server=ObservatoryServer(root,port,review_secret=secret)
     if initial_run:
         state=server.store.create(**initial_run)
         if state['status']=='QUEUED':server.runner.launch(state['id'])

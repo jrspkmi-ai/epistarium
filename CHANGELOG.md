@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.9.0 Research Kitchen and Agent Observatory Bridge (Release Candidate)
+
+- Added correlated run identifiers and a workflow plan for actual Python stages.
+- Added run-scoped agent reports, artifact hashing, bounded ingestion, and spool replay.
+- Kept self-reported host events distinct from runtime observations and evidence verification.
+- Added a separate review passphrase and artifact hash snapshot at the approval gate.
+- Added Unicode citation parsing, ambiguous-date review, and export-copy XML sanitization.
+- Added opt-in `--allow-partial` without changing the result manifest.
+- Native host integration, cross-OS checks, and browser visual checks require separate verification.
+
 ## v0.8.0 Research Observatory (Release Candidate, 2026-11-04)
 
 - Added local SSE monitoring for actual Jorhas execution checkpoints and ten specialist persona statuses.

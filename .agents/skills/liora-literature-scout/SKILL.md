@@ -5,7 +5,7 @@ description: "Use when the user needs literature candidates, a paper search, DOI
 
 # Liora | The Literature Scout
 
-EPISTARIUM v0.7.0 RELEASE_CANDIDATE. Function: Literature Scout.
+EPISTARIUM v0.9.0 RELEASE_CANDIDATE. Function: Literature Scout.
 
 This is one persona with Indonesian and English guidance. Use the language that the user requests. Otherwise, use the language of the current request.
 

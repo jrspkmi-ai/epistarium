@@ -11,15 +11,15 @@ Explore. Analyze. Verify.
 
 Modular AI Research Skills
 
-v0.8.0 RELEASE_CANDIDATE. Ten research personas, English and Bahasa Indonesia, one codebase.
+v0.9.0 RELEASE_CANDIDATE. Ten research personas, English and Bahasa Indonesia, one codebase.
 
-MIT covers original EPISTARIUM work. The runtime uses pypdfium2 and pypdf. Release gate: GO_BERSYARAT.
-Read [licensing](docs/en/LICENSING.md) and [release readiness](reports/v0.7.1/RELEASE_READINESS.md).
+MIT covers original EPISTARIUM work. The runtime uses pypdfium2 and pypdf. Release gate: PENDING_CROSS_OS_CI.
+Read [licensing](docs/en/LICENSING.md) and [release readiness](reports/v0.9.0/RELEASE_READINESS.md).
 
 <!-- section: quickstart -->
 ## Start here
 
-On the GitHub repository page, choose **Code > Download ZIP**, or use the version 0.7.1 release ZIP asset when available. Extract it and open the folder with `pyproject.toml`, `AGENTS.md`, and `.agents/skills/`. The folder name depends on how you download the project.
+On the GitHub repository page, choose **Code > Download ZIP**, or use the version 0.9.0 release ZIP asset when available. Extract it and open the folder with `pyproject.toml`, `AGENTS.md`, and `.agents/skills/`. The folder name depends on how you download the project.
 
 Use Python 3.11 or later. Linux Python 3.12.14 was tested here. Other OS/Python combinations require their own checks.
 First, read the [PDF licensing gate](docs/en/LICENSING.md).
@@ -49,7 +49,7 @@ Language never changes source quotations, DOI values, names, numbers, or canonic
 
 Follow [First Research](docs/en/FIRST_RESEARCH.md) to inspect the output and run a safe source-to-review workflow.
 
-## Live Research Observatory (v0.8.0)
+## Live Research Observatory (v0.9.0)
 
 Monitor actual Jorhas Python steps, persona states, record counts, artifacts, and approval gates in a bilingual local interface. Choose dark/light or EN/ID. An executed step is **not** semantic verification.
 
@@ -57,7 +57,7 @@ Monitor actual Jorhas Python steps, persona states, record counts, artifacts, an
 python -m epistarium observatory --open
 ```
 
-For a real local Path Finding run, add `--idea "Your research topic" --mode pathfind`. An automatically opened browser requires a desktop environment and browser-launch permission. See [Observatory documentation](docs/en/observatory/README.md) and [panduan Indonesia](docs/id/observatory/README.md). The dashboard is not a ChatGPT web plugin.
+For a real local Path Finding run, add `--idea "Your research topic" --mode pathfind`. An automatically opened browser requires a desktop environment and browser-launch permission. See [Observatory documentation](docs/en/observatory/README.md) and [panduan Indonesia](docs/id/observatory/README.md). The dashboard is not a ChatGPT web plugin. Read the [bridge guide](docs/en/observatory/BRIDGE.md) for host checkpoints and approval.
 
 <!-- section: installation -->
 ## Install for your environment
@@ -124,9 +124,9 @@ Read the [evidence protocol](docs/en/EVIDENCE_PROTOCOL.md), [status glossary](do
 <!-- section: maintenance -->
 ## Documentation and maintenance
 
-[Documentation map](docs/en/INDEX.md) · [Test results](reports/v0.7.1/TEST_RESULTS.md) · [Security audit](reports/v0.7.0/SECURITY_AUDIT.md)
+[Documentation map](docs/en/INDEX.md) · [Test results](reports/v0.9.0/TEST_RESULTS.md) · [Security audit](reports/v0.7.0/SECURITY_AUDIT.md)
 
-[Contribute](CONTRIBUTING.md) · [Migration](docs/en/migrations/0.6_to_0.7.md) · [Release notes](docs/en/releases/v0.7.1.md) · [Changelog](CHANGELOG.md)
+[Contribute](CONTRIBUTING.md) · [Migration](docs/en/migrations/0.6_to_0.7.md) · [Historical release notes](docs/en/releases/v0.7.1.md) · [Changelog](CHANGELOG.md)
 
 [MIT original-work license](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md) · [PDF licensing resolution](reports/v0.7.1/LICENSING_RESOLUTION.md)
 
@@ -141,7 +141,7 @@ Read the [evidence protocol](docs/en/EVIDENCE_PROTOCOL.md), [status glossary](do
 
 On Windows, replace .venv/bin/python with .\.venv\Scripts\python.exe.
 English follows [SimpleEnglish Plain 2.1.1](docs/style/SIMPLE_ENGLISH.md). Preserve its [MIT notice](third_party/SimpleEnglish/LICENSE).
-Historical reports record earlier work. Current evidence is in reports/v0.7.1. Earlier reports are historical.
+Historical reports record earlier work. Current evidence is in reports/v0.9.0.
 This alpha source distribution retains a conditional release gate. Review the current readiness report before production use.
 
-Current PDF backend and release decision: [v0.7.1 readiness](reports/v0.7.1/RELEASE_READINESS.md).
+Current release decision: [v0.9.0 readiness](reports/v0.9.0/RELEASE_READINESS.md).

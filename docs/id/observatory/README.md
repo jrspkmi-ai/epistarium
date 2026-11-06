@@ -1,5 +1,5 @@
 <!-- section: start -->
-# EPISTARIUM v0.8.0 | Research Observatory (ID)
+# EPISTARIUM v0.9.0 | Research Observatory (ID)
 
 Observatory merupakan **pemantau lokal opsional** bagi eksekusi Python Jorhas yang benar-benar berlangsung. Halaman ini menampilkan status sepuluh persona resmi, langkah, jumlah rekaman sumber/data, artefak, peristiwa, dan gerbang persetujuan peneliti. Observatory membantu pengawasan kerja, **bukan layanan verifikasi empiris otomatis**.
 
@@ -43,20 +43,22 @@ Angka rekaman dihitung dari `SOURCE_LEDGER.json` dan `DATA_LEDGER.json`. Nilai y
 <!-- section: approval -->
 ## Gerbang persetujuan
 
-- Opsi `--online` membuat run berhenti **sebelum akses sumber luar**. Peneliti harus menyetujuinya dari dashboard lokal. Adapter tetap wajib mematuhi izin, hak akses, dan batas layanan.
-- Setelah eksekusi, Jorhas menunggu **otorisasi pelepasan paket artefak**. Peneliti dapat menyetujui, menolak, atau meminta revisi. Penolakan dan permintaan revisi harus disertai alasan. Rekaman `approvals.json` menyimpan pilihan, waktu, identitas peninjau lokal, dan hash manifest jika tersedia. `release_authorization.json` hanya dibuat setelah persetujuan final eksplisit.
+- Opsi `--online` membuat run berhenti **sebelum akses sumber luar**. Peneliti harus menyetujuinya dari dashboard lokal menggunakan kata sandi peninjauan. Adapter tetap wajib mematuhi izin, hak akses, dan batas layanan.
+- Setelah eksekusi, Jorhas menunggu **otorisasi pelepasan paket artefak**. Peneliti dapat menyetujui, menolak, atau meminta revisi. Penolakan dan permintaan revisi harus disertai alasan. Rekaman `approvals.json` menyimpan pilihan, waktu, label peninjau lokal yang identitasnya belum diautentikasi, hash manifest, dan daftar hash artefak. `release_authorization.json` hanya dibuat setelah persetujuan final eksplisit.
 - Persetujuan berarti izin melanjutkan atau melepas paket, **bukan** keputusan bahwa seluruh sumber terverifikasi, serta bukan izin untuk menerbitkan kode ke GitHub.
 - Permintaan revisi mengakhiri run dengan `NEEDS_CHANGES`. Pengguna dapat menjalankan run baru; melanjutkan otomatis sebagian tahapan persona belum tersedia.
 
 <!-- section: security -->
 ## Keamanan dan batas data
 
-Server hanya membuka `127.0.0.1` dan menolak Host/Origin asing. Endpoint yang mengubah status memerlukan token sesi melalui header khusus. Tidak ada izin lintas-origin. Pratinjau dibatasi pada folder run privat, menolak symlink serta *path traversal*, dan mengirim **teks saja** yang dirender dengan `textContent`, bukan sebagai HTML yang dieksekusi. Jalur berkas dan masukan privat tidak dibuka pada linimasa aktivitas. Jangan menyimpan folder run di repositori yang akan dipublikasikan.
+Server hanya membuka `127.0.0.1` dan menolak Host/Origin asing. Endpoint yang mengubah status memerlukan token sesi melalui header khusus. Tidak ada izin lintas-origin. Pratinjau dibatasi pada folder run privat, menolak symlink serta *path traversal*, dan mengirim **teks saja** yang dirender dengan `textContent`, bukan sebagai HTML yang dieksekusi. Nama artefak relatif dapat tercatat dalam event privat; masukan mentah tidak diterima melalui bridge. Jangan menyimpan folder run di repositori yang akan dipublikasikan.
 
 **Batas ancaman:** proses berbahaya dengan akses pengguna sistem operasi yang sama mungkin tetap bisa memeriksa lalu lintas localhost atau berkas. Dashboard ini **belum dirancang untuk server publik, penerusan port, atau banyak pengguna yang tidak saling dipercaya**. Jangan membukanya melalui reverse proxy atau tunnel publik.
 
 <!-- section: limits -->
 ## Keterbatasan dan pemeriksaan
+
+Baca [panduan bridge](BRIDGE.md) untuk kata sandi dan laporan host eksternal. Kata sandi peninjauan terpisah dari token agen.
 
 Tes regresi Python dan HTTP/SSE lokal tersedia pada `tests/test_observatory_v080.py`. Pemeriksaan visual Chromium merupakan tes opsional melalui `scripts/observatory_browser_smoke.py` dan memerlukan Playwright/Chromium terpisah. Jalankan `python -m pytest -q` dan matriks GitHub Actions sebelum memublikasikan rilis.
 

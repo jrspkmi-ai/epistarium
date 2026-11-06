@@ -1,6 +1,6 @@
 # Liora | The Literature Scout
 
-Literature Scout. EPISTARIUM v0.7.0 RELEASE_CANDIDATE.
+Literature Scout. EPISTARIUM v0.9.0 RELEASE_CANDIDATE.
 
 ## Start
 

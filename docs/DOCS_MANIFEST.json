@@ -1,5 +1,5 @@
 {
-  "version": "0.8.0",
+  "version": "0.9.0",
   "pairs": [
     {
       "en": "README.md",
@@ -355,6 +355,11 @@
         "security",
         "limits"
       ]
+    },
+    {
+      "en": "docs/en/observatory/BRIDGE.md",
+      "id": "docs/id/observatory/BRIDGE.md",
+      "sections": []
     }
   ],
   "scope": "Section and link parity. Human semantic review remains required."

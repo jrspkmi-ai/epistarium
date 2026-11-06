@@ -6,6 +6,7 @@ It never treats metadata/abstract as evidence for methodological or result field
 from __future__ import annotations
 from .i18n import tr, display_status, localized, get_language
 import re
+import hashlib
 from pathlib import Path
 from . import pdf_backend as fitz
 from .common import save_json, now_iso, sha256, validate_schema, require_unique_ids
@@ -66,6 +67,15 @@ def _candidate_text(paragraph, field):
         r'(?:results?|findings?) (?:are |were )?not (?:yet )?(?:available|reported|presented))\b', plain, re.I):
         return ''
     return plain
+
+
+def _raw_excerpt(page_text, normalized_excerpt):
+    """Find a whitespace-equivalent excerpt on its source page; never invent one."""
+    words=normalized_excerpt.split()
+    if not words:return None
+    pattern=r'\s+'.join(re.escape(word) for word in words)
+    match=re.search(pattern,page_text)
+    return match.group(0) if match else None
 
 
 SECTION_HEADINGS={
@@ -168,7 +178,16 @@ def analyze(articles, out_dir, *, max_candidates_per_field=3):
                 if len(result['reported_by_author'][key])>=max_candidates_per_field:break
                 clean = _candidate_text(paragraph, key)
                 if clean and any(re.search(pattern,clean,flags=re.I) for pattern in patterns):
-                        result['reported_by_author'][key].append({'excerpt':paragraph[:600],
+                        candidate=paragraph[:600]
+                        raw=_raw_excerpt(p['text'],candidate)
+                        result['reported_by_author'][key].append({'excerpt':candidate,
+                         'excerpt_representation':'whitespace_normalized_candidate',
+                         'candidate_excerpt_sha256':hashlib.sha256(candidate.encode('utf-8')).hexdigest(),
+                         'raw_excerpt':raw,
+                         'raw_excerpt_sha256':hashlib.sha256(raw.encode('utf-8')).hexdigest() if raw is not None else None,
+                         'raw_excerpt_status':'FOUND_ON_EXTRACTED_PAGE' if raw is not None else 'NOT_LOCATED',
+                         'page_text_sha256':hashlib.sha256(p['text'].encode('utf-8')).hexdigest(),
+                         'page_id':f"{expected_hash}:p{p['pdf_page']}",
                          'detected_section':section,'selection_score':section_score(key,section),
                          'pdf_page':p['pdf_page'],'printed_page':p['printed_page'],'pdf_page_label':p['pdf_page_label'],
                          'source':'pdf_fulltext', 'printed_page_method':p.get('printed_page_method'),

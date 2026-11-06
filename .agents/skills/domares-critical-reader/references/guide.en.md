@@ -1,6 +1,6 @@
 # Domares | The Critical Reader
 
-Critical Reader. EPISTARIUM v0.7.0 RELEASE_CANDIDATE.
+Critical Reader. EPISTARIUM v0.9.0 RELEASE_CANDIDATE.
 
 ## Start
 

@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.9.0 Research Kitchen dan Agent Observatory Bridge (Kandidat Rilis)
+
+- Menambahkan ID run bersama dan rencana workflow untuk tahap Python yang benar-benar berjalan.
+- Menambahkan laporan agen per run, hash artefak, batas event, dan pengiriman ulang spool.
+- Memisahkan laporan host dari pengamatan runtime dan status verifikasi bukti.
+- Menambahkan kata sandi peninjauan terpisah serta daftar hash artefak pada gerbang persetujuan.
+- Memperbaiki penguraian sitasi Unicode, peninjauan bentuk ambigu, dan sanitasi salinan ekspor.
+- Menambahkan `--allow-partial` sebagai opsi tanpa mengubah status manifest.
+- Integrasi native host, pemeriksaan lintas OS, dan pengujian visual browser memerlukan verifikasi tersendiri.
+
 ## v0.8.0 Research Observatory (Kandidat Rilis, 4 November 2026)
 
 - Menambahkan pemantauan SSE lokal atas checkpoint eksekusi Python Jorhas dan status sepuluh persona.

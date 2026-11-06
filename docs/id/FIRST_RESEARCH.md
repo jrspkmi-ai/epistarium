@@ -59,7 +59,7 @@ Contoh Vanlan memuat angka yang salah dan PDF yang hilang. Highlight menunjukkan
 Kandidat Liora memuat metadata sintetis. Bukti indeks Agresa juga simulasi.
 Retho membedakan sumber hilang, pindaian, dan identitas berbeda. Domares serta Synthia mempertahankan bukti yang belum tersedia.
 
-[Log demo terkini](../../reports/v0.7.0/tutorial-smoke.json) mencatat exit code aktual dan pemeriksaan berkas.
+[Log demo terdahulu](../../reports/v0.7.0/tutorial-smoke.json) mencatat exit code aktual dan pemeriksaan berkas.
 Eksekusi agen native terpisah dari eksekusi CLI deterministik ini.
 
 <!-- section: next -->

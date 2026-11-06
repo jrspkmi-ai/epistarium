@@ -1,5 +1,5 @@
 <!-- section: start -->
-# EPISTARIUM v0.8.0 | Research Observatory (EN)
+# EPISTARIUM v0.9.0 | Research Observatory (EN)
 
 The Observatory is an **optional local monitor** for actual Jorhas Python runs. It shows the state of ten canonical personas, steps, source/data record counts, artifacts, events, and human approval gates. This is an instrument for supervision, **not an automatic empirical validation service**.
 
@@ -43,8 +43,8 @@ Record counts are taken from `SOURCE_LEDGER.json` and `DATA_LEDGER.json`. Unavai
 <!-- section: approval -->
 ## Approval gates
 
-- If `--online` is provided, the run pauses **before external source access**. The user must approve it in the local dashboard. Online requests remain subject to the provider adapter's authorization, rights, and limits.
-- After execution, Jorhas pauses before **authorizing the run artifact package**. The user can approve, reject, or request changes. Rejection and change requests require a reason. The `approvals.json` record includes the decision, time, reviewer label, and a manifest hash where available. `release_authorization.json` is written only after explicit final approval.
+- If `--online` is provided, the run pauses **before external source access**. The user must approve it in the local dashboard with the review passphrase. Online requests remain subject to the provider adapter's authorization, rights, and limits.
+- After execution, Jorhas pauses before **authorizing the run artifact package**. The user can approve, reject, or request changes. Rejection and change requests require a reason. The `approvals.json` record includes the decision, time, an unverified local reviewer label, a manifest hash, and an artifact hash snapshot. `release_authorization.json` is written only after explicit final approval.
 - Approval is an authorization to proceed or release a package. It does not promote sources to `verified` or authorize publication to GitHub.
 - A change request terminates the present run in `NEEDS_CHANGES`. The user can start a new run. Automatic resume/re-execution of individual persona tasks is not yet implemented.
 
@@ -57,6 +57,8 @@ The server binds to `127.0.0.1` only and rejects foreign Host/Origin values. Sta
 
 <!-- section: limits -->
 ## Known limits and verification
+
+See the [bridge guide](BRIDGE.md) for passphrase setup and external host reports. The browser passphrase is separate from the agent capability.
 
 Local Python regression and loopback HTTP/SSE tests are part of `tests/test_observatory_v080.py`. Visual Chromium testing is optional and is documented by `scripts/observatory_browser_smoke.py`, which requires separate Playwright/Chromium setup. Run `python -m pytest -q` and the repository's GitHub Actions test matrix before publishing a release.
 

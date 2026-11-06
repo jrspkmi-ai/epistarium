@@ -8,7 +8,7 @@ from .i18n import tr, display_status, localized, get_language, normalize_aliases
 import json
 import re
 from pathlib import Path
-from .common import save_json, now_iso
+from .common import save_json, now_iso, xml_safe_copy
 
 from docx import Document
 from docx.shared import Inches, Pt, RGBColor
@@ -215,7 +215,11 @@ def export(spec,out_dir,*,previous=None):
     docpath=out/f'EPISTARIUM_ORIGO_Research_Mapping_{safe}_v01.docx'
     save_json(out/'ideon_origo.json',result)
     try:
-        doc=_doc(result);doc.save(docpath)
+        sanitation=[]
+        export_copy=xml_safe_copy(result,sanitation)
+        save_json(out/'sanitization_audit_docx.json',{'scope':'DOCX export copy only',
+                  'items':sanitation,'total_replacements':sum(x['replacements'] for x in sanitation)})
+        doc=_doc(export_copy);doc.save(docpath)
         # Reopen to verify DOCX logical content; visual QA remains separate.
         reopened=Document(docpath)
         headings=[p.text for p in reopened.paragraphs if p.style.name=='Heading 2']

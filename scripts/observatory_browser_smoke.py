@@ -13,7 +13,7 @@ def run(out_dir, chromium='/usr/bin/chromium'):
     from playwright.sync_api import sync_playwright
     out=Path(out_dir).resolve();out.mkdir(parents=True,exist_ok=True)
     root=out/'private-workspace'
-    server=ObservatoryServer(root,0)
+    server=ObservatoryServer(root,0,review_secret='synthetic-browser-review')
     server_thread=Thread(target=server.serve_forever,daemon=True)
     server_thread.start()
     fixture=Path(__file__).resolve().parents[1]/'examples/f4_synthetic/pathfinder_cases.json'
@@ -49,6 +49,7 @@ def run(out_dir, chromium='/usr/bin/chromium'):
             page.get_by_role('button',name='Setujui',exact=True).click()
             page.locator('#approval-dialog').wait_for(state='visible')
             page.locator('#decision-reason').fill('Reviewed as synthetic fixture, not verified evidence.')
+            page.locator('#review-secret').fill('synthetic-browser-review')
             page.locator('#confirm-decision').click()
             page.locator('#approval-dialog').wait_for(state='hidden')
             page.wait_for_function("document.querySelector('#run-status').textContent.trim() === 'RELEASE_AUTHORIZED'",timeout=15000)
